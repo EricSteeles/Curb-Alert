@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+# Sitemap location (optional - you can remove this line if you don't have a sitemap)
+# Sitemap: https://your-curb-alert-domain.com/sitemap.xml
