@@ -1,8 +1,6 @@
 .item-card {
-  pointer-events: auto !important;
   cursor: pointer !important;
-  position: relative !important;
-  z-index: 1 !important;
+  pointer-events: auto !important;
 }
 
 .item-card * {

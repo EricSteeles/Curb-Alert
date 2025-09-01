@@ -50,15 +50,11 @@ const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }
   };
 
   // Handle item click
- const handleClick = () => {
-  console.log('🔍 ITEM CLICKED:', item.title);
-  console.log('🔍 onItemClick function:', typeof onItemClick);
-  if (typeof onItemClick === 'function') {
-    console.log('🔍 Calling onItemClick...');
-    onItemClick(item);
-  } else {
-    console.error('❌ onItemClick is not a function!');
-  }
+ const handleClick = (e) => {
+  console.log('ITEM CLICKED:', item.title);
+  console.log('onItemClick type:', typeof onItemClick);
+  alert('Item clicked: ' + item.title); // Simple test
+  onItemClick(item);
 };
 
   const primaryImage = getPrimaryImage();
