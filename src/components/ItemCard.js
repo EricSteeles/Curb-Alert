@@ -51,9 +51,6 @@ const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }
 
   // Handle item click
  const handleClick = (e) => {
-  console.log('ITEM CLICKED:', item.title);
-  console.log('onItemClick type:', typeof onItemClick);
-  alert('Item clicked: ' + item.title); // Simple test
   onItemClick(item);
 };
 
