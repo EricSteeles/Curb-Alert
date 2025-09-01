@@ -61,10 +61,11 @@ const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }
   const displayCategory = getDisplayCategory();
 
   return (
-    <div 
-      className={`item-card ${isClaimedView ? 'claimed-item' : ''}`}
-      onClick={handleClick}
-    >
+   <div 
+  className={`item-card ${isClaimedView ? 'claimed-item' : ''}`}
+  onClick={handleClick}
+  style={{ cursor: 'pointer', pointerEvents: 'auto', zIndex: 10 }}
+>
       {/* Status Badge */}
       <div className={`status-badge status-${item.status}`}>
         <i className={`fas ${

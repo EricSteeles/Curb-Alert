@@ -1,4 +1,22 @@
 .item-card {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.item-card * {
+  pointer-events: none !important;
+}
+
+.item-card .item-actions {
+  pointer-events: auto !important;
+}
+
+.item-card .item-actions * {
+  pointer-events: auto !important;
+}
+.item-card {
   cursor: pointer !important;
   pointer-events: auto !important;
 }
