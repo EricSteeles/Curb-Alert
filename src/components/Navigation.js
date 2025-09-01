@@ -1,26 +1,40 @@
 import React from 'react';
 
-const Navigation = ({ activeTab, setActiveTab }) => {
-  const tabs = [
-    { id: 'browse', label: 'Browse Items', icon: 'fas fa-search' },
-    { id: 'map', label: 'Map View', icon: 'fas fa-map-marked-alt' },
-    { id: 'post', label: 'Post Item', icon: 'fas fa-plus-circle' },
-    { id: 'myitems', label: 'My Items', icon: 'fas fa-user' }
-  ];
-
+const Navigation = ({ currentTab, onTabChange }) => {
   return (
-    <div className="nav-tabs">
-      {tabs.map(tab => (
-        <button
-          key={tab.id}
-          className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-          onClick={() => setActiveTab(tab.id)}
-        >
-          <i className={tab.icon}></i>
-          <span className="tab-label">{tab.label}</span>
-        </button>
-      ))}
-    </div>
+    <nav className="navigation">
+      <button
+        className={`nav-button ${currentTab === 'browse' ? 'active' : ''}`}
+        onClick={() => onTabChange('browse')}
+      >
+        <i className="fas fa-search"></i>
+        <span>Browse</span>
+      </button>
+      
+      <button
+        className={`nav-button ${currentTab === 'post' ? 'active' : ''}`}
+        onClick={() => onTabChange('post')}
+      >
+        <i className="fas fa-plus-circle"></i>
+        <span>Post Item</span>
+      </button>
+      
+      <button
+        className={`nav-button ${currentTab === 'my-items' ? 'active' : ''}`}
+        onClick={() => onTabChange('my-items')}
+      >
+        <i className="fas fa-user"></i>
+        <span>My Items</span>
+      </button>
+      
+      <button
+        className={`nav-button ${currentTab === 'map' ? 'active' : ''}`}
+        onClick={() => onTabChange('map')}
+      >
+        <i className="fas fa-map-marker-alt"></i>
+        <span>Map</span>
+      </button>
+    </nav>
   );
 };
 

@@ -1,156 +1,247 @@
 import React, { useState } from 'react';
 import ItemCard from '../components/ItemCard';
 import ItemModal from '../components/ItemModal';
+import EditItemModal from '../components/EditItemModal';
 
-const MyItems = ({ items, updateItemStatus, deleteItem }) => {
+const MyItems = ({ 
+  items = [], 
+  showNotification, 
+  onItemUpdate, 
+  onItemDelete, 
+  onItemStatusChange, 
+  loading 
+}) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
 
-  const filteredItems = items.filter(item => {
-    if (filter === 'all') return true;
-    return item.status === filter;
-  });
-
-  const getStatusCount = (status) => {
-    return items.filter(item => item.status === status).length;
-  };
+  // Filter items - for now showing all items (you could filter by user later)
+  const myItems = items; // TODO: Filter by current user when authentication is added
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
+    setShowModal(true);
   };
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
+    setShowModal(false);
     setSelectedItem(null);
   };
 
-  const handleDelete = (itemId) => {
-    if (window.confirm('Are you sure you want to delete this item? This action cannot be undone.')) {
-      deleteItem(itemId);
+  const handleEditClick = (item, e) => {
+    e.stopPropagation(); // Prevent item card click
+    setEditingItem(item);
+    setShowEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setEditingItem(null);
+  };
+
+  const handleDeleteClick = async (item, e) => {
+    e.stopPropagation(); // Prevent item card click
+    
+    if (window.confirm(`Are you sure you want to delete "${item.title}"? This action cannot be undone.`)) {
+      try {
+        await onItemDelete(item.id);
+      } catch (error) {
+        console.error('Error deleting item:', error);
+      }
     }
   };
 
+  const handleStatusChange = async (itemId, newStatus) => {
+    try {
+      await onItemStatusChange(itemId, newStatus);
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
+  };
+
+  const availableItems = myItems.filter(item => item.status === 'available');
+  const claimedItems = myItems.filter(item => item.status === 'claimed');
+  const expiredItems = myItems.filter(item => item.status === 'expired');
+
+  if (loading) {
+    return (
+      <div className="tab-content">
+        <div className="loading">
+          <i className="fas fa-spinner fa-spin"></i>
+          <h3>Loading your items...</h3>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="tab-content">
-      <div className="my-items-header">
-        <h2>
-          <i className="fas fa-user"></i> My Posted Items
-        </h2>
-        <p>Manage your posted items and track their status</p>
+      <h2 style={{ marginBottom: '30px', textAlign: 'center' }}>
+        <i className="fas fa-list"></i> My Items
+      </h2>
+
+      {/* Stats */}
+      <div className="my-items-stats">
+        <div className="stat-card available">
+          <i className="fas fa-check-circle"></i>
+          <div>
+            <h3>{availableItems.length}</h3>
+            <span>Available</span>
+          </div>
+        </div>
+        <div className="stat-card claimed">
+          <i className="fas fa-handshake"></i>
+          <div>
+            <h3>{claimedItems.length}</h3>
+            <span>Claimed</span>
+          </div>
+        </div>
+        <div className="stat-card total">
+          <i className="fas fa-list"></i>
+          <div>
+            <h3>{myItems.length}</h3>
+            <span>Total</span>
+          </div>
+        </div>
       </div>
 
-      {items.length === 0 ? (
+      {myItems.length === 0 ? (
         <div className="empty-state">
-          <i className="fas fa-plus-circle" style={{ fontSize: '4rem', marginBottom: '20px', opacity: '0.5' }}></i>
+          <i className="fas fa-plus-circle" style={{ fontSize: '4rem', marginBottom: '20px', color: '#d1d5db' }}></i>
           <h3>No items posted yet</h3>
-          <p>Post your first item to help others in your community!</p>
-          <button 
-            className="btn"
-            onClick={() => window.dispatchEvent(new CustomEvent('switchTab', { detail: 'post' }))}
-          >
-            <i className="fas fa-plus"></i> Post Your First Item
-          </button>
+          <p>Click the + button to post your first free item!</p>
         </div>
       ) : (
         <>
-          <div className="items-filter">
-            <div className="filter-buttons">
-              <button 
-                className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-                onClick={() => setFilter('all')}
-              >
-                All Items ({items.length})
-              </button>
-              <button 
-                className={`filter-btn ${filter === 'available' ? 'active' : ''}`}
-                onClick={() => setFilter('available')}
-              >
-                <i className="fas fa-check-circle"></i>
-                Available ({getStatusCount('available')})
-              </button>
-              <button 
-                className={`filter-btn ${filter === 'claimed' ? 'active' : ''}`}
-                onClick={() => setFilter('claimed')}
-              >
-                <i className="fas fa-handshake"></i>
-                Claimed ({getStatusCount('claimed')})
-              </button>
-            </div>
-          </div>
-
-          <div className="items-stats">
-            <div className="stat-card">
-              <div className="stat-number">{items.length}</div>
-              <div className="stat-label">Total Items</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">{getStatusCount('available')}</div>
-              <div className="stat-label">Available</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">{getStatusCount('claimed')}</div>
-              <div className="stat-label">Claimed</div>
-            </div>
-          </div>
-
-          {filteredItems.length === 0 ? (
-            <div className="empty-state">
-              <i className="fas fa-filter" style={{ fontSize: '3rem', marginBottom: '15px', opacity: '0.5' }}></i>
-              <h3>No items match this filter</h3>
-              <p>Try selecting a different status filter above</p>
-            </div>
-          ) : (
-            <div className="items-grid">
-              {filteredItems.map(item => (
-                <div key={item.id} className="my-item-wrapper">
-                  <ItemCard
-                    item={item}
-                    onClick={() => handleItemClick(item)}
-                    onStatusUpdate={updateItemStatus}
-                    showActions={true}
-                  />
-                  <div className="my-item-actions">
-                    <button
-                      className="btn btn-small btn-secondary"
-                      onClick={() => handleItemClick(item)}
-                    >
-                      <i className="fas fa-eye"></i> View Details
-                    </button>
+          {/* Available Items */}
+          {availableItems.length > 0 && (
+            <div className="items-section">
+              <h3 className="section-title">
+                <i className="fas fa-check-circle" style={{ color: '#10b981' }}></i>
+                Available Items ({availableItems.length})
+              </h3>
+              <div className="items-grid">
+                {availableItems.map(item => (
+                  <div key={item.id} className="my-item-wrapper">
+                    <ItemCard
+                      item={item}
+                      onItemClick={handleItemClick}
+                      showNotification={showNotification}
+                    />
                     
-                    {item.status === 'available' ? (
-                      <button
-                        className="btn btn-small"
-                        onClick={() => updateItemStatus(item.id, 'claimed')}
-                      >
-                        <i className="fas fa-check"></i> Mark Claimed
-                      </button>
-                    ) : (
+                    {/* Item Actions */}
+                    <div className="my-item-actions">
                       <button
                         className="btn btn-small btn-secondary"
-                        onClick={() => updateItemStatus(item.id, 'available')}
+                        onClick={(e) => handleEditClick(item, e)}
+                        title="Edit item"
                       >
-                        <i className="fas fa-undo"></i> Mark Available
+                        <i className="fas fa-edit"></i>
+                        Edit
                       </button>
-                    )}
-                    
-                    <button
-                      className="btn btn-small btn-danger"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      <i className="fas fa-trash"></i> Delete
-                    </button>
+                      
+                      <button
+                        className="btn btn-small btn-success"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStatusChange(item.id, 'claimed');
+                        }}
+                        title="Mark as claimed"
+                      >
+                        <i className="fas fa-handshake"></i>
+                        Mark Claimed
+                      </button>
+                      
+                      <button
+                        className="btn btn-small btn-danger"
+                        onClick={(e) => handleDeleteClick(item, e)}
+                        title="Delete item"
+                      >
+                        <i className="fas fa-trash"></i>
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Claimed Items */}
+          {claimedItems.length > 0 && (
+            <div className="items-section">
+              <h3 className="section-title">
+                <i className="fas fa-handshake" style={{ color: '#6b7280' }}></i>
+                Claimed Items ({claimedItems.length})
+              </h3>
+              <div className="items-grid">
+                {claimedItems.map(item => (
+                  <div key={item.id} className="my-item-wrapper">
+                    <ItemCard
+                      item={item}
+                      onItemClick={handleItemClick}
+                      showNotification={showNotification}
+                      isClaimedView={true}
+                    />
+                    
+                    {/* Claimed Item Actions */}
+                    <div className="my-item-actions">
+                      <button
+                        className="btn btn-small btn-secondary"
+                        onClick={(e) => handleEditClick(item, e)}
+                        title="Edit item"
+                      >
+                        <i className="fas fa-edit"></i>
+                        Edit
+                      </button>
+                      
+                      <button
+                        className="btn btn-small btn-primary"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStatusChange(item.id, 'available');
+                        }}
+                        title="Mark as available again"
+                      >
+                        <i className="fas fa-undo"></i>
+                        Repost
+                      </button>
+                      
+                      <button
+                        className="btn btn-small btn-danger"
+                        onClick={(e) => handleDeleteClick(item, e)}
+                        title="Delete item"
+                      >
+                        <i className="fas fa-trash"></i>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </>
       )}
 
-      {selectedItem && (
+      {/* Item Detail Modal */}
+      {showModal && selectedItem && (
         <ItemModal
           item={selectedItem}
-          onClose={closeModal}
-          onStatusUpdate={updateItemStatus}
+          onClose={handleCloseModal}
+          onStatusUpdate={handleStatusChange}
+          showNotification={showNotification}
+        />
+      )}
+
+      {/* Edit Item Modal */}
+      {showEditModal && editingItem && (
+        <EditItemModal
+          item={editingItem}
+          onSave={onItemUpdate}
+          onClose={handleCloseEditModal}
+          showNotification={showNotification}
         />
       )}
     </div>

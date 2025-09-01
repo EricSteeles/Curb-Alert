@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMap from '../components/GoogleMap';
+import ItemModal from '../components/ItemModal';
 import { getCurrentLocation } from '../utils/geolocation';
 
-const MapView = ({ items }) => {
+const MapView = ({ items, showNotification, onItemUpdate }) => {
   const [userLocation, setUserLocation] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isGettingLocation, setIsGettingLocation] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const categories = [
     { value: '', label: 'All Categories' },
@@ -27,6 +30,26 @@ const MapView = ({ items }) => {
     return item.category === selectedCategory && item.status === 'available';
   });
 
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedItem(null);
+  };
+
+  const handleStatusUpdate = async (itemId, newStatus) => {
+    try {
+      await onItemUpdate(itemId, { status: newStatus });
+      showNotification(`Item marked as ${newStatus}!`, 'success');
+    } catch (error) {
+      console.error('Error updating item status:', error);
+      showNotification('Error updating item status. Please try again.', 'error');
+    }
+  };
+
   const findMyLocation = async () => {
     setIsGettingLocation(true);
     try {
@@ -34,7 +57,7 @@ const MapView = ({ items }) => {
       setUserLocation(location);
     } catch (error) {
       console.error('Error getting location:', error);
-      alert('Unable to get your location: ' + error.message);
+      showNotification('Unable to get your location: ' + error.message, 'error');
     } finally {
       setIsGettingLocation(false);
     }
@@ -54,6 +77,7 @@ const MapView = ({ items }) => {
         items={filteredItems}
         userLocation={userLocation}
         selectedCategory={selectedCategory}
+        onItemClick={handleItemClick}
       />
 
       <div className="map-controls-bottom">
@@ -101,6 +125,16 @@ const MapView = ({ items }) => {
           <h3>No items to display</h3>
           <p>Try changing the category filter or check back later for new items!</p>
         </div>
+      )}
+
+      {/* Item Detail Modal */}
+      {showModal && selectedItem && (
+        <ItemModal
+          item={selectedItem}
+          onClose={handleCloseModal}
+          onStatusUpdate={handleStatusUpdate}
+          showNotification={showNotification}
+        />
       )}
     </div>
   );

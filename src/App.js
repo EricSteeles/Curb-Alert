@@ -1,124 +1,202 @@
 import React, { useState, useEffect } from 'react';
 import './styles/App.css';
+
+// Components
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 import PostItem from './pages/PostItem';
 import MyItems from './pages/MyItems';
-import MapView from './pages/Map';
-import { loadItems, saveItems, loadUserItems, saveUserItems } from './utils/storage';
+import Map from './pages/Map';
+
+// Firebase Services
+import { itemsService } from './services/firebaseService';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('browse');
+  const [currentTab, setCurrentTab] = useState('browse');
   const [items, setItems] = useState([]);
-  const [userItems, setUserItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState(null);
 
+  // Load items from Firebase on app start
   useEffect(() => {
-    // Load data on app start
-    setItems(loadItems());
-    setUserItems(loadUserItems());
+    loadItems();
   }, []);
 
-  const showNotification = (message, type = 'success') => {
+  const loadItems = async () => {
+    try {
+      setLoading(true);
+      const fetchedItems = await itemsService.getAllItems();
+      setItems(fetchedItems);
+    } catch (error) {
+      console.error('Error loading items:', error);
+      showNotification('Error loading items. Please refresh the page.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleItemPost = async (newItemData) => {
+    try {
+      // Add item to Firebase
+      const itemId = await itemsService.addItem(newItemData);
+      
+      // Refresh the items list
+      await loadItems();
+      
+      showNotification('Item posted successfully!', 'success');
+      setCurrentTab('browse'); // Redirect to browse after posting
+      
+      return itemId;
+    } catch (error) {
+      console.error('Error posting item:', error);
+      showNotification('Error posting item. Please try again.', 'error');
+      throw error;
+    }
+  };
+
+  const handleItemUpdate = async (itemId, updates) => {
+    try {
+      await itemsService.updateItem(itemId, updates);
+      await loadItems(); // Refresh items
+      showNotification('Item updated successfully!', 'success');
+    } catch (error) {
+      console.error('Error updating item:', error);
+      showNotification('Error updating item. Please try again.', 'error');
+      throw error;
+    }
+  };
+
+  const handleItemDelete = async (itemId) => {
+    try {
+      await itemsService.deleteItem(itemId);
+      await loadItems(); // Refresh items
+      showNotification('Item deleted successfully!', 'success');
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      showNotification('Error deleting item. Please try again.', 'error');
+      throw error;
+    }
+  };
+
+  const handleItemStatusChange = async (itemId, newStatus) => {
+    try {
+      await itemsService.updateItemStatus(itemId, newStatus);
+      await loadItems(); // Refresh items
+      showNotification(`Item marked as ${newStatus}!`, 'success');
+    } catch (error) {
+      console.error('Error updating item status:', error);
+      showNotification('Error updating item status. Please try again.', 'error');
+      throw error;
+    }
+  };
+
+  const showNotification = (message, type = 'info') => {
     setNotification({ message, type });
-    setTimeout(() => setNotification(null), 3000);
+    setTimeout(() => {
+      setNotification(null);
+    }, 4000);
   };
 
-  const addItem = (newItem) => {
-    const itemWithId = {
-      ...newItem,
-      id: Date.now(),
-      posted: new Date().toISOString(),
-      status: 'available'
-    };
-    
-    const updatedItems = [...items, itemWithId];
-    const updatedUserItems = [...userItems, itemWithId];
-    
-    setItems(updatedItems);
-    setUserItems(updatedUserItems);
-    
-    saveItems(updatedItems);
-    saveUserItems(updatedUserItems);
-    
-    showNotification('Item posted successfully!');
-    setActiveTab('browse');
-  };
-
-  const updateItemStatus = (itemId, status) => {
-    const updateItems = (itemsList) => 
-      itemsList.map(item => 
-        item.id === itemId ? { ...item, status } : item
+  const renderTabContent = () => {
+    if (loading && items.length === 0) {
+      return (
+        <div className="tab-content">
+          <div className="loading">
+            <i className="fas fa-spinner fa-spin"></i>
+            <h3>Loading items...</h3>
+          </div>
+        </div>
       );
+    }
 
-    const updatedItems = updateItems(items);
-    const updatedUserItems = updateItems(userItems);
-    
-    setItems(updatedItems);
-    setUserItems(updatedUserItems);
-    
-    saveItems(updatedItems);
-    saveUserItems(updatedUserItems);
-    
-    showNotification(`Item marked as ${status}!`);
-  };
-
-  const deleteItem = (itemId) => {
-    const filteredItems = items.filter(item => item.id !== itemId);
-    const filteredUserItems = userItems.filter(item => item.id !== itemId);
-    
-    setItems(filteredItems);
-    setUserItems(filteredUserItems);
-    
-    saveItems(filteredItems);
-    saveUserItems(filteredUserItems);
-    
-    showNotification('Item deleted successfully!');
-  };
-
-  const renderActiveTab = () => {
-    switch (activeTab) {
+    switch (currentTab) {
       case 'browse':
-        return <Browse items={items} updateItemStatus={updateItemStatus} />;
-      case 'map':
-        return <MapView items={items} />;
+        return (
+          <Browse 
+            items={items}
+            showNotification={showNotification}
+            onItemUpdate={handleItemUpdate}
+            loading={loading}
+          />
+        );
+      
       case 'post':
-        return <PostItem onItemPost={addItem} showNotification={showNotification} />;
-      case 'myitems':
-        return <MyItems 
-          items={userItems} 
-          updateItemStatus={updateItemStatus}
-          deleteItem={deleteItem}
-        />;
+        return (
+          <PostItem 
+            onItemPost={handleItemPost}
+            showNotification={showNotification}
+          />
+        );
+      
+      case 'my-items':
+        return (
+          <MyItems 
+            items={items}
+            showNotification={showNotification}
+            onItemUpdate={handleItemUpdate}
+            onItemDelete={handleItemDelete}
+            onItemStatusChange={handleItemStatusChange}
+            loading={loading}
+          />
+        );
+      
+      case 'map':
+        return (
+          <Map 
+            items={items}
+            showNotification={showNotification}
+            loading={loading}
+          />
+        );
+      
       default:
-        return <Browse items={items} updateItemStatus={updateItemStatus} />;
+        return null;
     }
   };
 
   return (
-    <div className="App">
+    <div className="app">
+      {/* App Header */}
+      <header className="header">
+        <div className="container">
+          <h1>🏠 Curb Alert</h1>
+          <p>Find free items in your neighborhood</p>
+        </div>
+      </header>
+
+      {/* Navigation */}
       <div className="container">
-        <div className="header">
-          <h1><i className="fas fa-recycle"></i> Curb Alert</h1>
-          <p>One Person's Trash, Another's Treasure</p>
-        </div>
+        <Navigation 
+          currentTab={currentTab} 
+          onTabChange={setCurrentTab} 
+        />
 
-        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-        
-        {renderActiveTab()}
-
-        {/* Floating Add Button */}
-        <div className="floating-add" onClick={() => setActiveTab('post')}>
-          <i className="fas fa-plus"></i>
-        </div>
-
-        {/* Notification */}
-        {notification && (
-          <div className={`notification ${notification.type}`}>
-            {notification.message}
-          </div>
-        )}
+        {/* Tab Content */}
+        {renderTabContent()}
       </div>
+
+      {/* Notification */}
+      {notification && (
+        <div className={`notification ${notification.type}`}>
+          <i className={`fas ${
+            notification.type === 'success' ? 'fa-check-circle' :
+            notification.type === 'error' ? 'fa-exclamation-circle' :
+            'fa-info-circle'
+          }`}></i>
+          {notification.message}
+        </div>
+      )}
+
+      {/* Floating Add Button - visible on browse/map tabs */}
+      {(currentTab === 'browse' || currentTab === 'map') && (
+        <button 
+          className="floating-add"
+          onClick={() => setCurrentTab('post')}
+          title="Post new item"
+        >
+          <i className="fas fa-plus"></i>
+        </button>
+      )}
     </div>
   );
 }
