@@ -1,0 +1,365 @@
+[
+  {
+    "id": 1,
+    "title": "EXAMPLE: Vintage Wooden Coffee Table",
+    "category": "furniture",
+    "finalCategory": "furniture",
+    "description": "Beautiful solid wood coffee table. Has some scratches but very sturdy. Perfect for someone who likes to refinish furniture!",
+    "location": "1234 Oak Street, Los Angeles, CA 90210",
+    "condition": "fair",
+    "contact": "john@email.com",
+    "tags": ["vintage", "wooden", "handmade", "refinishing project", "solid wood", "scratches", "sturdy", "heavy"],
+    "photos": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-20T10:30:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0522,
+      "lng": -118.2437
+    }
+  },
+  {
+    "id": 2,
+    "title": "EXAMPLE: Old CRT Television - Works Great",
+    "category": "electronics",
+    "finalCategory": "electronics",
+    "description": "32-inch CRT TV in perfect working condition. Great for retro gaming! Heavy - you'll need help moving it.",
+    "location": "567 Pine Avenue, Beverly Hills, CA 90210",
+    "condition": "good",
+    "contact": "(555) 123-4567",
+    "tags": ["crt", "retro gaming", "32 inch", "vintage tv", "heavy", "working", "perfect condition", "nintendo", "sega"],
+    "photos": [
+      "https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-20T14:15:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0736,
+      "lng": -118.4004
+    }
+  },
+  {
+    "id": 3,
+    "title": "EXAMPLE: Kids' Bike Collection",
+    "category": "toys",
+    "finalCategory": "toys",
+    "description": "Three kids bikes - ages 5-10. Some rust but all functional. Chains may need oil. Great for fixing up!",
+    "location": "890 Maple Drive, Santa Monica, CA 90405",
+    "condition": "fair",
+    "contact": "",
+    "tags": ["kids bikes", "children", "ages 5-10", "rust", "needs oil", "functional", "diy project", "three bikes", "fixer upper"],
+    "photos": [
+      "https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-19T16:45:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0195,
+      "lng": -118.4912
+    }
+  },
+  {
+    "id": 4,
+    "title": "EXAMPLE: Exercise Equipment - Various",
+    "category": "sports",
+    "finalCategory": "sports",
+    "description": "Dumbbells (10-25 lbs), yoga mat, resistance bands. All in good condition. Moving and can't take with us.",
+    "location": "321 Sunset Blvd, Hollywood, CA 90028",
+    "condition": "good",
+    "contact": "fitness@email.com",
+    "tags": ["dumbbells", "10-25 lbs", "yoga mat", "resistance bands", "home gym", "fitness", "weights", "workout", "moving sale"],
+    "photos": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-19T09:20:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0928,
+      "lng": -118.3287
+    }
+  },
+  {
+    "id": 5,
+    "title": "EXAMPLE: Broken Washing Machine - For Parts",
+    "category": "appliances",
+    "finalCategory": "appliances",
+    "description": "Whirlpool washer, motor died but drum and other parts still good. Perfect for someone who repairs appliances.",
+    "location": "654 Valley Road, Burbank, CA 91501",
+    "condition": "poor",
+    "contact": "(555) 987-6543",
+    "tags": ["whirlpool", "parts only", "broken", "motor died", "drum good", "appliance repair", "scrap parts", "diy repair"],
+    "photos": [
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-18T13:10:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.1808,
+      "lng": -118.3090
+    }
+  },
+  {
+    "id": 6,
+    "title": "EXAMPLE: Garden Tools & Pots",
+    "category": "garden",
+    "finalCategory": "garden",
+    "description": "Assorted garden tools, ceramic pots, and plant trays. Some tools need sharpening but all usable.",
+    "location": "987 Garden Lane, Pasadena, CA 91101",
+    "condition": "good",
+    "contact": "",
+    "tags": ["garden tools", "ceramic pots", "plant trays", "needs sharpening", "gardening", "outdoor", "planting", "pottery"],
+    "photos": [
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1563897515430-3df0fd8ee6c6?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-18T11:30:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.1478,
+      "lng": -118.1445
+    }
+  },
+  {
+    "id": 7,
+    "title": "EXAMPLE: Comic Book Collection",
+    "category": "books",
+    "finalCategory": "books",
+    "description": "About 200 comic books from the 90s-2000s. Mix of Marvel and DC. Some valuable ones in there!",
+    "location": "456 Comic Street, Glendale, CA 91201",
+    "condition": "excellent",
+    "contact": "comics@email.com",
+    "tags": ["comic books", "200 comics", "90s", "2000s", "marvel", "dc", "collectible", "valuable", "vintage comics"],
+    "photos": [
+      "https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-17T15:45:00Z",
+    "status": "claimed",
+    "coordinates": {
+      "lat": 34.1425,
+      "lng": -118.2551
+    }
+  },
+  {
+    "id": 8,
+    "title": "EXAMPLE: Assorted Scrap Metal",
+    "category": "scrap",
+    "finalCategory": "scrap",
+    "description": "Copper pipes, aluminum sheets, and steel rods. About 50 lbs total. Great for DIY projects or recycling.",
+    "location": "159 Industrial Way, Long Beach, CA 90802",
+    "condition": "fair",
+    "contact": "(555) 246-8135",
+    "tags": ["copper pipes", "aluminum sheets", "steel rods", "50 lbs", "diy projects", "recycling", "metal", "scrap"],
+    "photos": [
+      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-17T08:15:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.7701,
+      "lng": -118.1937
+    }
+  },
+  {
+    "id": 9,
+    "title": "EXAMPLE: Women's Clothing - Size M/L",
+    "category": "clothing",
+    "finalCategory": "clothing",
+    "description": "Business casual and casual wear. About 20 pieces. All clean and in good condition. Smoke-free home.",
+    "location": "753 Fashion Ave, West Hollywood, CA 90069",
+    "condition": "good",
+    "contact": "",
+    "tags": ["women's clothing", "size medium", "size large", "business casual", "20 pieces", "smoke-free", "clean"],
+    "photos": [
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-16T19:30:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0900,
+      "lng": -118.3617
+    }
+  },
+  {
+    "id": 10,
+    "title": "EXAMPLE: Power Tools - Need Repair",
+    "category": "tools",
+    "finalCategory": "tools",
+    "description": "Circular saw and drill. Both need some work but motors run. Perfect for someone handy with tools.",
+    "location": "852 Workshop Road, Torrance, CA 90501",
+    "condition": "poor",
+    "contact": "tools@email.com",
+    "tags": ["power tools", "circular saw", "drill", "needs repair", "motors run", "handy person", "fixer upper", "diy"],
+    "photos": [
+      "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-16T12:00:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.8358,
+      "lng": -118.3406
+    }
+  },
+  {
+    "id": 11,
+    "title": "EXAMPLE: Acoustic Guitar with Case",
+    "category": "other",
+    "finalCategory": "musical instruments",
+    "description": "Yamaha acoustic guitar with soft case. Some wear on the body but plays beautifully. Great for beginners or pros!",
+    "location": "234 Music Street, Venice, CA 90291",
+    "condition": "good",
+    "contact": "music@email.com",
+    "tags": ["acoustic guitar", "yamaha", "soft case", "beginner", "professional", "musical instrument", "guitar", "strings"],
+    "photos": [
+      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-15T16:20:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0052,
+      "lng": -118.4914
+    }
+  },
+  {
+    "id": 12,
+    "title": "EXAMPLE: Art Supplies Collection",
+    "category": "other",
+    "finalCategory": "art supplies",
+    "description": "Acrylic paints, brushes, canvases, and easel. Moving out of art studio and can't take everything. Great starter set!",
+    "location": "567 Canvas Road, Silver Lake, CA 90026",
+    "condition": "excellent",
+    "contact": "(555) 321-9876",
+    "tags": ["art supplies", "acrylic paints", "brushes", "canvases", "easel", "studio", "starter set", "painting", "artist"],
+    "photos": [
+      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-15T11:45:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0804,
+      "lng": -118.2606
+    }
+  },
+  {
+    "id": 13,
+    "title": "EXAMPLE: Car Parts - Honda Civic 2010",
+    "category": "other",
+    "finalCategory": "automotive parts",
+    "description": "Brake pads, air filter, and spark plugs. All new in packaging. Bought for my car but sold it instead.",
+    "location": "890 Auto Way, Culver City, CA 90232",
+    "condition": "excellent",
+    "contact": "auto@email.com",
+    "tags": ["car parts", "honda civic", "2010", "brake pads", "air filter", "spark plugs", "new", "packaging", "automotive"],
+    "photos": [
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-14T14:30:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 34.0259,
+      "lng": -118.3957
+    }
+  },
+  {
+    "id": 14,
+    "title": "EXAMPLE: Board Games Collection",
+    "category": "toys",
+    "finalCategory": "toys",
+    "description": "Monopoly, Scrabble, Risk, and Settlers of Catan. All complete with pieces. Family game night favorites!",
+    "location": "123 Family Lane, Manhattan Beach, CA 90266",
+    "condition": "good",
+    "contact": "",
+    "tags": ["board games", "monopoly", "scrabble", "risk", "settlers of catan", "complete", "family", "game night", "pieces included"],
+    "photos": [
+      "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-14T09:15:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.8847,
+      "lng": -118.4109
+    }
+  },
+  {
+    "id": 15,
+    "title": "EXAMPLE: Office Chair - Needs New Wheels",
+    "category": "furniture",
+    "finalCategory": "furniture",
+    "description": "Ergonomic office chair with lumbar support. Wheels are broken but chair is very comfortable. Easy fix!",
+    "location": "456 Office Blvd, Marina del Rey, CA 90292",
+    "condition": "fair",
+    "contact": "(555) 789-0123",
+    "tags": ["office chair", "ergonomic", "lumbar support", "broken wheels", "comfortable", "easy fix", "workplace", "desk chair"],
+    "photos": [
+      "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-13T13:45:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.9806,
+      "lng": -118.4517
+    }
+  },
+  {
+    "id": 16,
+    "title": "EXAMPLE: Kitchen Appliances Bundle",
+    "category": "appliances",
+    "finalCategory": "appliances",
+    "description": "Blender, toaster, and coffee maker. All working perfectly. Kitchen remodel so we upgraded everything.",
+    "location": "789 Kitchen Street, El Segundo, CA 90245",
+    "condition": "excellent",
+    "contact": "kitchen@email.com",
+    "tags": ["kitchen appliances", "blender", "toaster", "coffee maker", "working", "kitchen remodel", "upgrade", "bundle"],
+    "photos": [
+      "https://images.unsplash.com/photo-1556909114-8b9b2cd3495d?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-13T08:20:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.9192,
+      "lng": -118.4165
+    }
+  },
+  {
+    "id": 17,
+    "title": "EXAMPLE: Baby Clothes 0-12 Months",
+    "category": "clothing",
+    "finalCategory": "clothing",
+    "description": "Large collection of baby clothes, onesies, and sleepers. All sizes 0-12 months. Clean and well-maintained.",
+    "location": "321 Baby Lane, Redondo Beach, CA 90277",
+    "condition": "excellent",
+    "contact": "",
+    "tags": ["baby clothes", "0-12 months", "onesies", "sleepers", "large collection", "clean", "well-maintained", "infant"],
+    "photos": [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-12T17:30:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.8492,
+      "lng": -118.3887
+    }
+  },
+  {
+    "id": 18,
+    "title": "EXAMPLE: Vintage Record Collection",
+    "category": "other",
+    "finalCategory": "collectibles",
+    "description": "50+ vinyl records from the 60s-80s. Classic rock, jazz, and soul. Some rare finds! Record player not included.",
+    "location": "654 Vinyl Ave, Hermosa Beach, CA 90254",
+    "condition": "good",
+    "contact": "records@email.com",
+    "tags": ["vinyl records", "50+ records", "60s", "70s", "80s", "classic rock", "jazz", "soul", "rare", "vintage", "collectible"],
+    "photos": [
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop"
+    ],
+    "posted": "2025-08-12T12:10:00Z",
+    "status": "available",
+    "coordinates": {
+      "lat": 33.8622,
+      "lng": -118.3987
+    }
+  }
+]
