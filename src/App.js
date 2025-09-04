@@ -25,7 +25,10 @@ function App() {
   const loadItems = async () => {
     try {
       setLoading(true);
+      console.log('LOADING ITEMS from Firebase...');
       const fetchedItems = await itemsService.getAllItems();
+      console.log('FETCHED ITEMS:', fetchedItems.length, 'items');
+      console.log('FIREBASE ITEM IDS:', fetchedItems.map(item => ({title: item.title, id: item.id, idType: typeof item.id})));
       setItems(fetchedItems);
     } catch (error) {
       console.error('Error loading items:', error);
@@ -68,8 +71,12 @@ function App() {
 
   const handleItemDelete = async (itemId) => {
     try {
-      await itemsService.deleteItem(itemId);
+      console.log('BEFORE DELETE: Items count =', items.length);
+      console.log('ATTEMPTING TO DELETE item with ID:', itemId, 'type:', typeof itemId);
+      await itemsService.deleteItem(String(itemId));
+      console.log('DELETE SUCCESSFUL, refreshing items...');
       await loadItems(); // Refresh items
+      console.log('AFTER REFRESH: Items count =', items.length);
       showNotification('Item deleted successfully!', 'success');
     } catch (error) {
       console.error('Error deleting item:', error);

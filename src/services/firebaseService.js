@@ -19,33 +19,38 @@ const ITEMS_COLLECTION = 'items';
 
 // Items Service
 export const itemsService = {
-  // Get all items
-  async getAllItems() {
-    try {
-      const querySnapshot = await getDocs(
-        query(
-          collection(db, ITEMS_COLLECTION), 
-          orderBy('posted', 'desc')
-        )
-      );
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push({
-          id: doc.id,
-          ...doc.data(),
-          posted: doc.data().posted?.toDate?.() || new Date(doc.data().posted)
-        });
-      });
-      return items;
-    } catch (error) {
-      console.error('Error fetching items:', error);
-      throw error;
-    }
-  },
-
+ // Get all items
+async getAllItems() {
+  try {
+    console.log('🔍 Fetching items from Firebase collection:', ITEMS_COLLECTION);
+    const querySnapshot = await getDocs(
+      query(
+        collection(db, ITEMS_COLLECTION), 
+        orderBy('posted', 'desc')
+      )
+    );
+    const items = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const item = {
+        ...data,
+        id: doc.id,  // MOVE THIS AFTER ...data TO OVERRIDE ANY NUMERIC ID
+        posted: data.posted?.toDate?.() || new Date(data.posted)
+      };
+      items.push(item);
+      console.log('📄 Found Firebase doc:', {id: doc.id, title: item.title});
+    });
+    console.log('✅ Firebase query complete. Found', items.length, 'items');
+    return items;
+  } catch (error) {
+    console.error('❌ Error fetching items from Firebase:', error);
+    throw error;
+  }
+},
   // Add new item
   async addItem(itemData, userId = 'anonymous') {
     try {
+      console.log('➕ Adding new item to Firebase:', itemData.title);
       const docRef = await addDoc(collection(db, ITEMS_COLLECTION), {
         ...itemData,
         userId: userId,
@@ -55,9 +60,10 @@ export const itemsService = {
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now()
       });
+      console.log('✅ Item added to Firebase with ID:', docRef.id);
       return docRef.id;
     } catch (error) {
-      console.error('Error adding item:', error);
+      console.error('❌ Error adding item to Firebase:', error);
       throw error;
     }
   },
@@ -65,14 +71,16 @@ export const itemsService = {
   // Update item
   async updateItem(itemId, updates) {
     try {
+      console.log('🔄 Updating Firebase item:', itemId, updates);
       const itemRef = doc(db, ITEMS_COLLECTION, itemId);
       await updateDoc(itemRef, {
         ...updates,
         updatedAt: Timestamp.now()
       });
+      console.log('✅ Firebase item updated successfully');
       return true;
     } catch (error) {
-      console.error('Error updating item:', error);
+      console.error('❌ Error updating Firebase item:', error);
       throw error;
     }
   },
@@ -80,10 +88,31 @@ export const itemsService = {
   // Delete item
   async deleteItem(itemId) {
     try {
-      await deleteDoc(doc(db, ITEMS_COLLECTION, itemId));
+      console.log('🗑️ ATTEMPTING TO DELETE Firebase document');
+      console.log('   - Item ID:', itemId);
+      console.log('   - ID Type:', typeof itemId);
+      console.log('   - Collection:', ITEMS_COLLECTION);
+      console.log('   - Full path: db/' + ITEMS_COLLECTION + '/' + itemId);
+      
+      // Check if document exists first
+      const itemRef = doc(db, ITEMS_COLLECTION, itemId);
+      const docSnap = await getDoc(itemRef);
+      
+      if (docSnap.exists()) {
+        console.log('✅ Document found in Firebase, proceeding with delete...');
+        console.log('   - Document data:', docSnap.data());
+        await deleteDoc(itemRef);
+        console.log('✅ Firebase deleteDoc() completed successfully');
+      } else {
+        console.warn('⚠️ Document NOT FOUND in Firebase!');
+        console.log('   - Attempted ID:', itemId);
+        console.log('   - This explains why nothing was deleted');
+        throw new Error(`Document with ID "${itemId}" does not exist in Firebase`);
+      }
+      
       return true;
     } catch (error) {
-      console.error('Error deleting item:', error);
+      console.error('❌ Error deleting Firebase item:', error);
       throw error;
     }
   },
@@ -91,14 +120,16 @@ export const itemsService = {
   // Update item status
   async updateItemStatus(itemId, status) {
     try {
+      console.log('🔄 Updating Firebase item status:', itemId, 'to', status);
       const itemRef = doc(db, ITEMS_COLLECTION, itemId);
       await updateDoc(itemRef, {
         status: status,
         updatedAt: Timestamp.now()
       });
+      console.log('✅ Firebase item status updated successfully');
       return true;
     } catch (error) {
-      console.error('Error updating item status:', error);
+      console.error('❌ Error updating Firebase item status:', error);
       throw error;
     }
   }

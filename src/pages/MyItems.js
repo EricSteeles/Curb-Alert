@@ -41,16 +41,16 @@ const MyItems = ({
   };
 
   const handleDeleteClick = async (item, e) => {
-    e.stopPropagation(); // Prevent item card click
-    
-    if (window.confirm(`Are you sure you want to delete "${item.title}"? This action cannot be undone.`)) {
-      try {
-        await onItemDelete(item.id);
-      } catch (error) {
-        console.error('Error deleting item:', error);
-      }
+  e.stopPropagation(); // Prevent item card click
+  
+  if (window.confirm(`Are you sure you want to delete "${item.title}"? This action cannot be undone.`)) {
+    try {
+      await onItemDelete(String(item.id)); // ADD String() HERE
+    } catch (error) {
+      console.error('Error deleting item:', error);
     }
-  };
+  }
+};
 
   const handleStatusChange = async (itemId, newStatus) => {
     try {
