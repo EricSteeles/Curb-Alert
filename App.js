@@ -159,9 +159,7 @@ function App() {
         );
       
       case 'guidelines':
-        return (
-          <Guidelines />
-        );
+        return <Guidelines />;
         
       default:
         return null;
