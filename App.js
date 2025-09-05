@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './styles/App.css';
-
-// Components
 import Guidelines from './pages/Guidelines';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 import PostItem from './pages/PostItem';
 import MyItems from './pages/MyItems';
 import Map from './pages/Map';
-
-// Firebase Services
 import { itemsService } from './services/firebaseService';
 
 function App() {
@@ -18,7 +14,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState(null);
 
-  // Load items from Firebase on app start
   useEffect(() => {
     loadItems();
   }, []);
@@ -26,10 +21,7 @@ function App() {
   const loadItems = async () => {
     try {
       setLoading(true);
-      console.log('LOADING ITEMS from Firebase...');
       const fetchedItems = await itemsService.getAllItems();
-      console.log('FETCHED ITEMS:', fetchedItems.length, 'items');
-      console.log('FIREBASE ITEM IDS:', fetchedItems.map(item => ({title: item.title, id: item.id, idType: typeof item.id})));
       setItems(fetchedItems);
     } catch (error) {
       console.error('Error loading items:', error);
@@ -67,12 +59,8 @@ function App() {
 
   const handleItemDelete = async (itemId) => {
     try {
-      console.log('BEFORE DELETE: Items count =', items.length);
-      console.log('ATTEMPTING TO DELETE item with ID:', itemId, 'type:', typeof itemId);
       await itemsService.deleteItem(String(itemId));
-      console.log('DELETE SUCCESSFUL, refreshing items...');
       await loadItems();
-      console.log('AFTER REFRESH: Items count =', items.length);
       showNotification('Item deleted successfully!', 'success');
     } catch (error) {
       console.error('Error deleting item:', error);
@@ -105,7 +93,6 @@ function App() {
       return (
         <div className="tab-content">
           <div className="loading">
-            <i className="fas fa-spinner fa-spin"></i>
             <h3>Loading items...</h3>
           </div>
         </div>
@@ -122,7 +109,6 @@ function App() {
             loading={loading}
           />
         );
-      
       case 'post':
         return (
           <PostItem 
@@ -130,7 +116,6 @@ function App() {
             showNotification={showNotification}
           />
         );
-      
       case 'my-items':
         return (
           <MyItems 
@@ -142,7 +127,6 @@ function App() {
             loading={loading}
           />
         );
-      
       case 'map':
         return (
           <Map 
@@ -152,10 +136,8 @@ function App() {
             loading={loading}
           />
         );
-      
       case 'guidelines':
         return <Guidelines />;
-        
       default:
         return null;
     }
@@ -165,11 +147,10 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1>🏠 Curb Alert</h1>
+          <h1>Curb Alert</h1>
           <p>Find free items in your neighborhood</p>
         </div>
       </header>
-
       <div className="container">
         <Navigation 
           currentTab={currentTab} 
@@ -177,25 +158,18 @@ function App() {
         />
         {renderTabContent()}
       </div>
-
       {notification && (
         <div className={`notification ${notification.type}`}>
-          <i className={`fas ${
-            notification.type === 'success' ? 'fa-check-circle' :
-            notification.type === 'error' ? 'fa-exclamation-circle' :
-            'fa-info-circle'
-          }`}></i>
           {notification.message}
         </div>
       )}
-
       {(currentTab === 'browse' || currentTab === 'map') && (
         <button 
           className="floating-add"
           onClick={() => setCurrentTab('post')}
           title="Post new item"
         >
-          <i className="fas fa-plus"></i>
+          +
         </button>
       )}
     </div>
