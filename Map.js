@@ -1,6 +1,8 @@
 
 const MapView = ({ items, showNotification, onItemUpdate }) => {
-  console.log('🗺️ MAP COMPONENT LOADED!'); // ADD THIS LINE FIRST
+  console.log('🗺️ MAP COMPONENT LOADED! Items received:', items.length); // ADD THIS LINE
+  
+  const [userLocation, setUserLocation] = useState(null);
 
 import React, { useState, useEffect } from 'react';
 import GoogleMap from '../components/GoogleMap';
@@ -36,7 +38,8 @@ const MapView = ({ items, showNotification, onItemUpdate }) => {
 
 console.log('🗺️ MAP DEBUG - Total items:', items.length);
 console.log('🗺️ MAP DEBUG - Filtered items:', filteredItems.length);
-console.log('🗺️ MAP DEBUG - Items data:', items.map(item => ({
+console.log('🗺️ MAP DEBUG - Items data:', items);
+
   title: item.title,
   status: item.status,
   hasCoordinates: !!item.coordinates,

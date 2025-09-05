@@ -1,0 +1,793 @@
+/* NUCLEAR INPUT ISOLATION - PREVENT ALL OVERLAP */
+.form-group,
+.search-filters .form-group,
+div[class*="form-group"] {
+  margin-bottom: 4rem !important;
+  padding: 1rem !important;
+  position: relative !important;
+  isolation: isolate !important;
+  contain: layout style !important;
+}
+
+.form-group *,
+.form-group input,
+.form-group select,
+.form-group textarea,
+#searchKeyword {
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+}
+
+.form-group *:hover,
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover,
+#searchKeyword:hover {
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+}
+
+.form-group *:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+#searchKeyword:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+}
+
+/* NUCLEAR FLEXBOX FIX - MUST BE FIRST */
+nav.navigation,
+.navigation,
+[class*="navigation"] {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  gap: 8px !important;
+}
+
+/* Navigation styling - Complete */
+.navigation {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 8px !important;
+  margin: 2rem auto !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: 100% !important;
+  max-width: 800px !important;
+}
+
+.nav-button {
+  flex: 1 !important;
+  max-width: 200px !important;
+  padding: 16px 20px !important;
+  border: none !important;
+  border-radius: 16px !important;
+  background: transparent !important;
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.nav-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+  transition: left 0.6s ease !important;
+}
+
+.nav-button:hover {
+  background: rgba(148, 163, 184, 0.1) !important;
+  color: #e2e8f0 !important;
+  transform: translateY(-2px) !important;
+}
+
+.nav-button:hover::before {
+  left: 100% !important;
+}
+
+.nav-button.active {
+  background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+  color: white !important;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+.nav-button.active::before {
+  display: none !important;
+}
+
+.nav-button i {
+  font-size: 1.1rem !important;
+}
+
+/* Search filters container */
+.search-filters {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 2.5rem !important;
+  margin-bottom: 3rem !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.search-filters::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.03) 0%, 
+    rgba(168, 85, 247, 0.03) 50%, 
+    rgba(236, 72, 153, 0.03) 100%) !important;
+  pointer-events: none !important;
+}
+
+.search-filters h3 {
+  color: #f1f5f9 !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 2rem !important;
+  text-align: center !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Form groups - NO OVERLAP */
+.form-group {
+  margin-bottom: 3.5rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.form-group:focus-within {
+  z-index: 10 !important;
+}
+
+.form-group label {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  display: block !important;
+  font-size: 0.95rem !important;
+}
+
+/* All inputs - CONTAINED EFFECTS ONLY */
+#searchKeyword,
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100% !important;
+  padding: 1.25rem 1.5rem !important;
+  border: 2px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 16px !important;
+  background: rgba(15, 23, 42, 0.6) !important;
+  color: #f1f5f9 !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#searchKeyword:hover,
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: rgba(168, 85, 247, 0.5) !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  z-index: 2 !important;
+}
+
+#searchKeyword:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none !important;
+  border-color: #a855f7 !important;
+  background: rgba(15, 23, 42, 0.9) !important;
+  color: #ffffff !important;
+  z-index: 3 !important;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #64748b !important;
+  font-style: italic !important;
+}
+
+/* Select styling */
+.form-group select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a855f7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+  background-position: right 1rem center !important;
+  background-repeat: no-repeat !important;
+  background-size: 1em 1em !important;
+  appearance: none !important;
+  padding-right: 3rem !important;
+  cursor: pointer !important;
+}
+
+/* Filter rows */
+.filter-row {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Items grid and cards */
+.items-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+}
+
+.item-card {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.item-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+.item-image-container {
+  position: relative !important;
+  height: 200px !important;
+  overflow: hidden !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.item-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.item-card:hover .item-image {
+  transform: scale(1.05) !important;
+}
+
+.item-no-image {
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(135deg, #1e293b, #334155) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #64748b !important;
+  font-size: 2rem !important;
+}
+
+.item-content {
+  padding: 1.5rem !important;
+}
+
+.item-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #f1f5f9 !important;
+  margin-bottom: 0.75rem !important;
+  line-height: 1.3 !important;
+}
+
+.item-description {
+  color: #94a3b8 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.item-category {
+  color: #a855f7 !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.item-location {
+  color: #94a3b8 !important;
+  font-size: 0.875rem !important;
+  margin-bottom: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.item-meta {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.1) !important;
+  font-size: 0.875rem !important;
+}
+
+.item-time {
+  color: #94a3b8 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+.item-condition {
+  padding: 0.25rem 0.75rem !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: capitalize !important;
+}
+
+.condition-excellent {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #4ade80 !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+.condition-good {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+.condition-fair {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+.condition-poor {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.status-badge {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 20px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  z-index: 2 !important;
+}
+
+.status-available {
+  background: rgba(16, 185, 129, 0.9) !important;
+  color: white !important;
+}
+
+.status-claimed {
+  background: rgba(107, 114, 128, 0.9) !important;
+  color: white !important;
+}
+
+.status-expired {
+  background: rgba(239, 68, 68, 0.9) !important;
+  color: white !important;
+}
+
+/* Floating add button */
+.floating-add {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  width: 70px !important;
+  height: 70px !important;
+  background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4) !important;
+  transition: all 0.3s ease !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.floating-add:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.5) !important;
+}
+
+/* General body and app styling */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+  color: #e2e8f0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  min-height: 100vh !important;
+}
+
+.app {
+  min-height: 100vh !important;
+  background: transparent !important;
+}
+
+.header {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%) !important;
+  color: white !important;
+  padding: 3rem 0 !important;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+  border-radius: 0 !important;
+}
+
+.header h1 {
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.header p {
+  font-size: 1.1rem !important;
+  opacity: 0.9 !important;
+}
+
+.tab-content {
+  padding: 2rem 0 !important;
+}
+
+.tab-content h2 {
+  color: #f1f5f9 !important;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  margin-bottom: 3rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+}
+
+/* Container */
+.container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+}
+
+/* Search results */
+.search-results {
+  margin-top: 2rem !important;
+}
+
+/* FIX OVERLAPPING - Ensure no shadows on hover/focus states */
+#searchKeyword:hover,
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover,
+#searchKeyword:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  box-shadow: none !important;
+  border-color: #a855f7 !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  z-index: 2 !important;
+}
+
+/* FIX SEARCH FILTERS CONTAINER - WIDER WITH BETTER SPACING */
+.search-filters {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 3.5rem !important;
+  margin-bottom: 3rem !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ENSURE PROPER GRID LAYOUT FOR FORM FIELDS */
+.search-filters .filter-row,
+.search-filters > div:not(.search-filters::before) {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* ENSURE ALL FORM GROUPS HAVE CONSISTENT SPACING */
+.search-filters .form-group {
+  margin-bottom: 2.5rem !important;
+  padding: 0.5rem !important;
+}
+
+/* ACTUAL POST ITEM PAGE STYLING - TARGETS REAL ELEMENTS */
+
+/* Style the "Add Photos" heading */
+h4 {
+  color: #f1f5f9 !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Create a photo upload container around the photo section */
+h4 + p + button {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)) !important;
+  border: 2px dashed rgba(168, 85, 247, 0.4) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  margin: 1rem 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: #f1f5f9 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Style all buttons in the post item page */
+button {
+  background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  margin: 0.25rem !important;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #5a6fd8, #9333ea) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Style the drag and drop text */
+p {
+  color: #94a3b8 !important;
+  font-size: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* MY ITEMS PAGE STYLING - MAKE IT MATCH THE REST OF THE SITE */
+
+/* Style the stats section numbers and labels */
+.tab-content h3 + div,
+.tab-content div:contains("2"),
+.tab-content div:contains("0") {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  margin: 1rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Style the section headings like "Available Items (2)" */
+h3 {
+  color: #f1f5f9 !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  margin: 2rem 0 1.5rem 0 !important;
+  padding: 1rem 0 !important;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.1) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Add icons before section headings */
+h3::before {
+  content: '●' !important;
+  color: #10b981 !important;
+  font-size: 1rem !important;
+}
+
+/* Style stats numbers to be more prominent */
+.tab-content div {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+
+/* Create better spacing for the stats layout */
+.tab-content > div:first-of-type {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 2rem !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 3rem !important;
+}
+
+/* ===== MAP FUNCTIONALITY CSS - ADD TO END OF APP.CSS ===== */
+
+/* Map container - CRITICAL for Google Maps to render */
+.map-container {
+  height: 500px !important;
+  width: 100% !important;
+  margin: 2rem 0 !important;
+  position: relative !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Map loading spinner */
+.map-loading {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  z-index: 1000 !important;
+  color: #f1f5f9 !important;
+}
+
+.map-loading p {
+  color: #94a3b8 !important;
+  margin-top: 1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Map placeholder for errors */
+.map-placeholder {
+  height: 500px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-radius: 16px !important;
+  color: #94a3b8 !important;
+  text-align: center !important;
+  padding: 2rem !important;
+}
+
+/* Map controls styling */
+.map-controls-bottom {
+  margin: 2rem 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.map-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem 2rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.map-stats {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+
+.stat-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Map filters styling */
+.map-filters {
+  margin: 2rem 0 !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Empty state for map */
+.empty-state {
+  text-align: center !important;
+  padding: 3rem 2rem !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  margin: 2rem 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.empty-state h3 {
+  color: #f1f5f9 !important;
+  margin: 1rem 0 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.empty-state p {
+  color: #94a3b8 !important;
+  font-size: 1rem !important;
+}
+
+/* Secondary button styling for map controls */
+.btn.btn-secondary {
+  background: linear-gradient(135deg, #374151, #4b5563) !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn.btn-secondary:hover {
+  background: linear-gradient(135deg, #4b5563, #6b7280) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(75, 85, 99, 0.4) !important;
+}
+
+.btn.btn-secondary:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
