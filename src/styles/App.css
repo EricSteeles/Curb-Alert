@@ -652,3 +652,142 @@ h3::before {
   flex-wrap: wrap !important;
   margin-bottom: 3rem !important;
 }
+
+/* ===== MAP FUNCTIONALITY CSS - ADD TO END OF APP.CSS ===== */
+
+/* Map container - CRITICAL for Google Maps to render */
+.map-container {
+  height: 500px !important;
+  width: 100% !important;
+  margin: 2rem 0 !important;
+  position: relative !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Map loading spinner */
+.map-loading {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  z-index: 1000 !important;
+  color: #f1f5f9 !important;
+}
+
+.map-loading p {
+  color: #94a3b8 !important;
+  margin-top: 1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Map placeholder for errors */
+.map-placeholder {
+  height: 500px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-radius: 16px !important;
+  color: #94a3b8 !important;
+  text-align: center !important;
+  padding: 2rem !important;
+}
+
+/* Map controls styling */
+.map-controls-bottom {
+  margin: 2rem 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.map-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem 2rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.map-stats {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+
+.stat-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Map filters styling */
+.map-filters {
+  margin: 2rem 0 !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Empty state for map */
+.empty-state {
+  text-align: center !important;
+  padding: 3rem 2rem !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  margin: 2rem 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.empty-state h3 {
+  color: #f1f5f9 !important;
+  margin: 1rem 0 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.empty-state p {
+  color: #94a3b8 !important;
+  font-size: 1rem !important;
+}
+
+/* Secondary button styling for map controls */
+.btn.btn-secondary {
+  background: linear-gradient(135deg, #374151, #4b5563) !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn.btn-secondary:hover {
+  background: linear-gradient(135deg, #4b5563, #6b7280) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(75, 85, 99, 0.4) !important;
+}
+
+.btn.btn-secondary:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}

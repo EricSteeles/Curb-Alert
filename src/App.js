@@ -148,13 +148,14 @@ function App() {
         );
       
       case 'map':
-        return (
-          <Map 
-            items={items}
-            showNotification={showNotification}
-            loading={loading}
-          />
-        );
+  return (
+    <Map 
+      items={items}
+      showNotification={showNotification}
+      onItemUpdate={handleItemUpdate}  // ADD THIS LINE
+      loading={loading}
+    />
+  );
       
       default:
         return null;

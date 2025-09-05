@@ -1,9 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import GoogleMap from '../components/GoogleMap';
 import ItemModal from '../components/ItemModal';
 import { getCurrentLocation } from '../utils/geolocation';
 
+console.log('🚨 MAP.JS FILE IS BEING EXECUTED!');
+
 const MapView = ({ items, showNotification, onItemUpdate }) => {
+  console.log('🗺️ MAP COMPONENT LOADED! Items received:', items.length);
+  
   const [userLocation, setUserLocation] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [isGettingLocation, setIsGettingLocation] = useState(false);
@@ -29,6 +34,17 @@ const MapView = ({ items, showNotification, onItemUpdate }) => {
     if (!selectedCategory) return item.status === 'available';
     return item.category === selectedCategory && item.status === 'available';
   });
+
+  // DEBUG OUTPUT
+  console.log('🗺️ MAP DEBUG - Total items:', items.length);
+  console.log('🗺️ MAP DEBUG - Filtered items:', filteredItems.length);
+  console.log('🗺️ MAP DEBUG - Items data:', items.map(item => ({
+    title: item.title,
+    status: item.status,
+    hasCoordinates: !!item.coordinates,
+    coordinates: item.coordinates,
+    location: item.location
+  })));
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
