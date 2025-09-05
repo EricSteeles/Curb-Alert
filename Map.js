@@ -1,3 +1,7 @@
+
+const MapView = ({ items, showNotification, onItemUpdate }) => {
+  console.log('🗺️ MAP COMPONENT LOADED!'); // ADD THIS LINE FIRST
+
 import React, { useState, useEffect } from 'react';
 import GoogleMap from '../components/GoogleMap';
 import ItemModal from '../components/ItemModal';
