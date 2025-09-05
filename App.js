@@ -156,7 +156,7 @@ function App() {
       onItemUpdate={handleItemUpdate}  // ADD THIS LINE
       loading={loading}
     />
-  );,
+  );
       
       default:
         return null;
