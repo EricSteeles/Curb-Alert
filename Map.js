@@ -30,6 +30,16 @@ const MapView = ({ items, showNotification, onItemUpdate }) => {
     return item.category === selectedCategory && item.status === 'available';
   });
 
+console.log('🗺️ MAP DEBUG - Total items:', items.length);
+console.log('🗺️ MAP DEBUG - Filtered items:', filteredItems.length);
+console.log('🗺️ MAP DEBUG - Items data:', items.map(item => ({
+  title: item.title,
+  status: item.status,
+  hasCoordinates: !!item.coordinates,
+  coordinates: item.coordinates,
+  location: item.location
+})));
+
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setShowModal(true);
