@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import ContactButtons from './ContactButtons';
 import MessageModal from './MessageModal';
+import { imageService } from '../services/firebaseService'; // ADD THIS IMPORT
 
 const ItemModal = ({ item, onClose, onStatusUpdate, showNotification }) => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [showMessageModal, setShowMessageModal] = useState(false);
 
   if (!item) return null;
+
+  // ADD THIS FUNCTION - Get optimized image for modal display
+  const getModalImage = (photoUrl) => {
+    if (!photoUrl) return null;
+    
+    // Use Cloudinary optimization for modal view
+    return imageService.getOptimizedUrl(photoUrl, {
+      width: 800,   // Good size for modal
+      height: 600,  // Good size for modal
+      crop: 'fit',  // Maintain aspect ratio, fit within bounds
+      quality: 'auto' // Let Cloudinary optimize quality
+    });
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -86,8 +100,9 @@ const ItemModal = ({ item, onClose, onStatusUpdate, showNotification }) => {
             <div className="modal-photos">
               <div className="photo-container">
                 <img 
-                  src={item.photos[currentPhotoIndex]} 
+                  src={getModalImage(item.photos[currentPhotoIndex])} 
                   alt={item.title}
+                  className="modal-photo"
                   onError={(e) => {
                     e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4=';
                   }}

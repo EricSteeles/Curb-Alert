@@ -822,3 +822,99 @@ h3::before {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   font-weight: bold !important;
 }
+
+/* ===== MODAL IMAGE SIZING FIX ===== */
+
+/* Constrain modal photo container */
+.modal-photos {
+  margin-bottom: 2rem !important;
+  max-height: 60vh !important;
+  overflow: hidden !important;
+}
+
+.modal-photos .photo-container {
+  position: relative !important;
+  width: 100% !important;
+  max-height: 60vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Constrain the actual modal image */
+.modal-photo {
+  max-width: 100% !important;
+  max-height: 60vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* Ensure modal content doesn't get too tall */
+.modal-content {
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+/* Photo navigation buttons */
+.photo-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+  border: none !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  z-index: 10 !important;
+}
+
+.photo-nav:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.photo-prev {
+  left: 10px !important;
+}
+
+.photo-next {
+  right: 10px !important;
+}
+
+/* Photo indicators */
+.photo-indicators {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 8px !important;
+  z-index: 10 !important;
+}
+
+.photo-indicator {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.photo-indicator.active {
+  background: white !important;
+  transform: scale(1.2) !important;
+}
