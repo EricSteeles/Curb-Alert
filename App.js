@@ -149,28 +149,24 @@ function App() {
         );
       
       case 'map':
-  return (
-    <Map 
-      items={items}
-      showNotification={showNotification}
-      onItemUpdate={handleItemUpdate}  // ADD THIS LINE
-      loading={loading}
-    />
-  );
+        return (
+          <Map 
+            items={items}
+            showNotification={showNotification}
+            onItemUpdate={handleItemUpdate}
+            loading={loading}
+          />
+        );
       
+      case 'guidelines':
+        return (
+          <Guidelines />
+        );
+        
       default:
         return null;
     }
   };
-
-case 'guidelines':
-      return (
-        <Guidelines />
-      );
-    
-    default:
-      return null;
-  }
 
   return (
     <div className="app">
