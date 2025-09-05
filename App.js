@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 
 // Components
+import Guidelines from './pages/Guidelines';
 import Navigation from './components/Navigation';
 import Browse from './pages/Browse';
 import PostItem from './pages/PostItem';
@@ -155,12 +156,21 @@ function App() {
       onItemUpdate={handleItemUpdate}  // ADD THIS LINE
       loading={loading}
     />
-  );
+  );,
       
       default:
         return null;
     }
   };
+
+case 'guidelines':
+      return (
+        <Guidelines />
+      );
+    
+    default:
+      return null;
+  }
 
   return (
     <div className="app">
