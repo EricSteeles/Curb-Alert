@@ -4,6 +4,8 @@ import GoogleMap from '../components/GoogleMap';
 import ItemModal from '../components/ItemModal';
 import { getCurrentLocation } from '../utils/geolocation';
 
+console.log('🚨 MAP.JS FILE IS BEING EXECUTED!');
+
 const MapView = ({ items, showNotification, onItemUpdate }) => {
   console.log('🗺️ MAP COMPONENT LOADED! Items received:', items.length);
   
