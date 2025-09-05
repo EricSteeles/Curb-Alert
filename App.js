@@ -41,15 +41,10 @@ function App() {
 
   const handleItemPost = async (newItemData) => {
     try {
-      // Add item to Firebase
       const itemId = await itemsService.addItem(newItemData);
-      
-      // Refresh the items list
       await loadItems();
-      
       showNotification('Item posted successfully!', 'success');
-      setCurrentTab('browse'); // Redirect to browse after posting
-      
+      setCurrentTab('browse');
       return itemId;
     } catch (error) {
       console.error('Error posting item:', error);
@@ -61,7 +56,7 @@ function App() {
   const handleItemUpdate = async (itemId, updates) => {
     try {
       await itemsService.updateItem(itemId, updates);
-      await loadItems(); // Refresh items
+      await loadItems();
       showNotification('Item updated successfully!', 'success');
     } catch (error) {
       console.error('Error updating item:', error);
@@ -76,7 +71,7 @@ function App() {
       console.log('ATTEMPTING TO DELETE item with ID:', itemId, 'type:', typeof itemId);
       await itemsService.deleteItem(String(itemId));
       console.log('DELETE SUCCESSFUL, refreshing items...');
-      await loadItems(); // Refresh items
+      await loadItems();
       console.log('AFTER REFRESH: Items count =', items.length);
       showNotification('Item deleted successfully!', 'success');
     } catch (error) {
@@ -89,7 +84,7 @@ function App() {
   const handleItemStatusChange = async (itemId, newStatus) => {
     try {
       await itemsService.updateItemStatus(itemId, newStatus);
-      await loadItems(); // Refresh items
+      await loadItems();
       showNotification(`Item marked as ${newStatus}!`, 'success');
     } catch (error) {
       console.error('Error updating item status:', error);
@@ -168,7 +163,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* App Header */}
       <header className="header">
         <div className="container">
           <h1>🏠 Curb Alert</h1>
@@ -176,18 +170,14 @@ function App() {
         </div>
       </header>
 
-      {/* Navigation */}
       <div className="container">
         <Navigation 
           currentTab={currentTab} 
           onTabChange={setCurrentTab} 
         />
-
-        {/* Tab Content */}
         {renderTabContent()}
       </div>
 
-      {/* Notification */}
       {notification && (
         <div className={`notification ${notification.type}`}>
           <i className={`fas ${
@@ -199,7 +189,6 @@ function App() {
         </div>
       )}
 
-      {/* Floating Add Button - visible on browse/map tabs */}
       {(currentTab === 'browse' || currentTab === 'map') && (
         <button 
           className="floating-add"
