@@ -918,3 +918,883 @@ h3::before {
   background: white !important;
   transform: scale(1.2) !important;
 }
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+
+/* Mobile breakpoints */
+@media (max-width: 768px) {
+  
+  /* Header adjustments */
+  .header {
+    padding: 2rem 0 !important;
+  }
+  
+  .header h1 {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .header p {
+    font-size: 1rem !important;
+  }
+  
+  /* Container padding for mobile */
+  .container {
+    padding: 0 15px !important;
+  }
+  
+  /* Navigation mobile fixes */
+  .navigation {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    padding: 6px !important;
+    gap: 4px !important;
+    margin: 1rem auto !important;
+  }
+  
+  .nav-button {
+    flex: 1 1 auto !important;
+    min-width: 70px !important;
+    max-width: none !important;
+    padding: 12px 8px !important;
+    font-size: 0.75rem !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  
+  .nav-button i {
+    font-size: 1rem !important;
+  }
+  
+  .nav-button span {
+    font-size: 0.7rem !important;
+  }
+  
+  /* Tab content spacing */
+  .tab-content {
+    padding: 1rem 0 !important;
+  }
+  
+  .tab-content h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 2rem !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Form adjustments */
+  .form-group {
+    margin-bottom: 2rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    border-radius: 12px !important;
+  }
+  
+  /* Form row becomes stacked on mobile */
+  .form-row {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  
+  /* Search filters mobile */
+  .search-filters {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 2rem !important;
+    border-radius: 16px !important;
+  }
+  
+  .search-filters h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .filter-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Items grid mobile */
+  .items-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Item cards mobile */
+  .item-card {
+    border-radius: 16px !important;
+  }
+  
+  .item-content {
+    padding: 1.25rem !important;
+  }
+  
+  .item-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .item-description {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .item-meta {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Photo upload mobile */
+  .photo-upload-area {
+    padding: 2rem 1rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .photo-upload-area h4 {
+    font-size: 1.1rem !important;
+  }
+  
+  .photo-upload-area p {
+    font-size: 0.9rem !important;
+  }
+  
+  .upload-buttons {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    margin-top: 1rem !important;
+  }
+  
+  .upload-buttons button {
+    width: 100% !important;
+    padding: 0.75rem !important;
+  }
+  
+  .photo-preview-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Modal mobile fixes */
+  .modal {
+    padding: 10px !important;
+    align-items: flex-start !important;
+    padding-top: 20px !important;
+  }
+  
+  .modal-content {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: calc(100vh - 40px) !important;
+    margin: 0 !important;
+    border-radius: 16px !important;
+  }
+  
+  .modal-header {
+    padding: 1rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
+  .modal-body {
+    padding: 1rem !important;
+  }
+  
+  .modal-body h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .modal-photos {
+    max-height: 50vh !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .modal-photo {
+    max-height: 50vh !important;
+  }
+  
+  .item-meta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Map mobile fixes */
+  .map-container {
+    height: 400px !important;
+    border-radius: 12px !important;
+    margin: 1.5rem 0 !important;
+  }
+  
+  .map-controls-bottom {
+    margin: 1.5rem 0 !important;
+  }
+  
+  .map-actions {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+    text-align: center !important;
+  }
+  
+  .map-filters {
+    padding: 1.5rem !important;
+    border-radius: 16px !important;
+  }
+  
+  /* Tags mobile */
+  .tags-input-container {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  .tags-input-container button {
+    width: 100% !important;
+  }
+  
+  .tag-suggestions {
+    margin-top: 0.75rem !important;
+  }
+  
+  .suggestion-tag {
+    margin: 0.25rem 0.25rem 0.25rem 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .current-tags {
+    margin-top: 1rem !important;
+  }
+  
+  .tags-display {
+    gap: 0.5rem !important;
+  }
+  
+  .tag-chip {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+  
+  /* Buttons mobile */
+  .btn {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 12px !important;
+    min-height: 44px !important; /* Touch-friendly */
+  }
+  
+  .btn-small {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.85rem !important;
+    min-height: 40px !important;
+  }
+  
+  /* Form actions mobile */
+  .form-actions {
+    margin-top: 2rem !important;
+  }
+  
+  .form-actions button {
+    width: 100% !important;
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Floating add button mobile */
+  .floating-add {
+    width: 60px !important;
+    height: 60px !important;
+    bottom: 1.5rem !important;
+    right: 1.5rem !important;
+    font-size: 1.25rem !important;
+  }
+  
+  /* Contact buttons mobile */
+  .contact-actions {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  .contact-actions button {
+    width: 100% !important;
+  }
+  
+  /* Address autocomplete mobile */
+  .location-btn {
+    width: 100% !important;
+    margin-top: 0.75rem !important;
+    padding: 0.75rem !important;
+  }
+  
+  .location-display {
+    margin-top: 0.75rem !important;
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Notification mobile */
+  .notification {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Empty state mobile */
+  .empty-state {
+    padding: 2rem 1.5rem !important;
+    border-radius: 16px !important;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.25rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .empty-state p {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Small mobile devices (phones in portrait) */
+@media (max-width: 480px) {
+  
+  .navigation {
+    gap: 2px !important;
+    padding: 4px !important;
+  }
+  
+  .nav-button {
+    padding: 10px 6px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .nav-button i {
+    font-size: 0.9rem !important;
+  }
+  
+  .nav-button span {
+    font-size: 0.65rem !important;
+  }
+  
+  .header h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  .tab-content h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .item-title {
+    font-size: 1rem !important;
+  }
+  
+  .modal-content {
+    border-radius: 12px !important;
+  }
+  
+  .map-container {
+    height: 350px !important;
+  }
+  
+  .photo-preview-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Touch improvements for all mobile */
+@media (hover: none) and (pointer: coarse) {
+  
+  /* Larger touch targets */
+  .nav-button,
+  .btn,
+  .item-card,
+  .tag-chip button,
+  .photo-nav,
+  .remove-photo {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .nav-button:hover,
+  .btn:hover,
+  .item-card:hover {
+    transform: none !important;
+  }
+  
+  /* Better focus states for touch */
+  .nav-button:focus,
+  .btn:focus,
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: 2px solid #a855f7 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* ===== REPORT MODAL & MODERATION STYLING ===== */
+
+/* Report modal specific styling */
+.report-modal {
+  max-width: 500px !important;
+}
+
+.report-modal .modal-header p {
+  color: #94a3b8 !important;
+  font-size: 0.9rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0 !important;
+}
+
+.reported-item-info {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.reported-item-info h4 {
+  color: #f1f5f9 !important;
+  font-size: 1rem !important;
+  margin: 0 0 0.5rem 0 !important;
+  font-weight: 600 !important;
+}
+
+.reported-item-info p {
+  color: #94a3b8 !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+}
+
+.report-guidelines {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 1rem !important;
+  margin: 1.5rem 0 !important;
+}
+
+.report-guidelines h4 {
+  color: #60a5fa !important;
+  font-size: 0.9rem !important;
+  margin: 0 0 0.75rem 0 !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.report-guidelines ul {
+  margin: 0 !important;
+  padding-left: 1.25rem !important;
+  list-style-type: disc !important;
+}
+
+.report-guidelines li {
+  color: #94a3b8 !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Modal header improvements for report button */
+.modal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+}
+
+.modal-header-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.modal-header-right {
+  flex-shrink: 0 !important;
+}
+
+/* Report button styling */
+.report-btn {
+  background: transparent !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  color: #ef4444 !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.report-btn:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: #ef4444 !important;
+  transform: none !important;
+}
+
+.report-btn i {
+  margin-right: 0.25rem !important;
+}
+
+/* Danger button styling for report submission */
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4) !important;
+}
+
+.btn-danger:disabled {
+  background: rgba(107, 114, 128, 0.5) !important;
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Outline button styling */
+.btn-outline {
+  background: transparent !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  color: #94a3b8 !important;
+}
+
+.btn-outline:hover {
+  background: rgba(148, 163, 184, 0.1) !important;
+  border-color: #94a3b8 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Character counter styling */
+.form-group small {
+  color: #6b7280 !important;
+  font-size: 0.75rem !important;
+  text-align: right !important;
+  display: block !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Admin features (for future admin panel) */
+.flagged-item {
+  border-left: 4px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.05) !important;
+}
+
+.flagged-badge {
+  background: rgba(239, 68, 68, 0.9) !important;
+  color: white !important;
+  font-size: 0.7rem !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+}
+
+/* Mobile responsive for report modal */
+@media (max-width: 768px) {
+  .modal-header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: stretch !important;
+  }
+  
+  .modal-header-right {
+    align-self: flex-end !important;
+  }
+  
+  .report-btn {
+    align-self: flex-start !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  .report-modal {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 10px !important;
+  }
+  
+  .reported-item-info {
+    padding: 0.75rem !important;
+  }
+  
+  .report-guidelines {
+    padding: 0.75rem !important;
+  }
+  
+  .report-guidelines li {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ===== COMMUNITY GUIDELINES PAGE STYLING ===== */
+
+.guidelines-content {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+.guidelines-intro {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  margin-bottom: 3rem !important;
+  text-align: center !important;
+}
+
+.guidelines-intro p {
+  color: #e2e8f0 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+.guidelines-section {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  margin-bottom: 2rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.guidelines-section h3 {
+  color: #f1f5f9 !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 1.5rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  border: none !important;
+  padding: 0 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+.guidelines-section h3::before {
+  display: none !important;
+}
+
+.guidelines-section h3 i {
+  color: #a855f7 !important;
+  font-size: 1.2rem !important;
+}
+
+.guidelines-section ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.guidelines-section li {
+  color: #e2e8f0 !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1rem !important;
+  padding-left: 2rem !important;
+  position: relative !important;
+}
+
+.guidelines-section li::before {
+  content: "•" !important;
+  color: #a855f7 !important;
+  font-size: 1.2rem !important;
+  position: absolute !important;
+  left: 0.5rem !important;
+  top: 0 !important;
+}
+
+.guidelines-section li strong {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+
+/* Specific section colors */
+.guidelines-section:nth-child(3) h3 i {
+  color: #10b981 !important; /* Green for "What You Can Post" */
+}
+
+.guidelines-section:nth-child(4) h3 i {
+  color: #ef4444 !important; /* Red for "What's Not Allowed" */
+}
+
+.guidelines-section:nth-child(5) h3 i {
+  color: #f59e0b !important; /* Orange for "Being a Good Community Member" */
+}
+
+.guidelines-section:nth-child(6) h3 i {
+  color: #3b82f6 !important; /* Blue for "Safety Tips" */
+}
+
+.guidelines-section:nth-child(7) h3 i {
+  color: #ef4444 !important; /* Red for "Reporting & Moderation" */
+}
+
+.guidelines-section:nth-child(8) h3 i {
+  color: #10b981 !important; /* Green for "Tips for Great Posts" */
+}
+
+.guidelines-footer {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2rem !important;
+  margin: 3rem 0 2rem 0 !important;
+}
+
+.footer-section {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+}
+
+.footer-section h4 {
+  color: #f1f5f9 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin: 0 0 1rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.footer-section h4 i {
+  color: #a855f7 !important;
+}
+
+.footer-section p {
+  color: #94a3b8 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.guidelines-agreement {
+  margin-top: 2rem !important;
+}
+
+.agreement-box {
+  background: rgba(59, 130, 246, 0.15) !important;
+  border: 2px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1rem !important;
+}
+
+.agreement-box i {
+  color: #60a5fa !important;
+  font-size: 1.25rem !important;
+  margin-top: 0.25rem !important;
+  flex-shrink: 0 !important;
+}
+
+.agreement-box p {
+  color: #e2e8f0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.agreement-box strong {
+  color: #f1f5f9 !important;
+}
+
+/* Mobile responsive for guidelines */
+@media (max-width: 768px) {
+  .guidelines-content {
+    padding: 0 0.5rem !important;
+  }
+  
+  .guidelines-intro {
+    padding: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .guidelines-intro p {
+    font-size: 1rem !important;
+  }
+  
+  .guidelines-section {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 16px !important;
+  }
+  
+  .guidelines-section h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 1.25rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+  
+  .guidelines-section li {
+    font-size: 0.9rem !important;
+    padding-left: 1.75rem !important;
+  }
+  
+  .guidelines-footer {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin: 2rem 0 1.5rem 0 !important;
+  }
+  
+  .footer-section {
+    padding: 1.25rem !important;
+  }
+  
+  .footer-section h4 {
+    font-size: 1rem !important;
+  }
+  
+  .footer-section p {
+    font-size: 0.9rem !important;
+  }
+  
+  .agreement-box {
+    padding: 1.25rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  
+  .agreement-box i {
+    margin-top: 0 !important;
+  }
+  
+  .agreement-box p {
+    font-size: 0.9rem !important;
+  }
+}

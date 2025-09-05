@@ -38,4 +38,12 @@ const Navigation = ({ currentTab, onTabChange }) => {
   );
 };
 
+<button
+  className={`nav-button ${currentTab === 'guidelines' ? 'active' : ''}`}
+  onClick={() => onTabChange('guidelines')}
+>
+  <i className="fas fa-book-open"></i>
+  <span>Guidelines</span>
+</button>
+
 export default Navigation;

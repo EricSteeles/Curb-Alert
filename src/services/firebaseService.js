@@ -135,6 +135,183 @@ async getAllItems() {
   }
 };
 
+// ADD THESE FUNCTIONS TO YOUR firebaseService.js (at the end, before the export)
+
+// Moderation Service
+export const moderationService = {
+  // Report an item
+  async reportItem(itemId, reportData) {
+    try {
+      console.log('📊 Reporting item:', itemId, reportData);
+      
+      const reportDoc = {
+        itemId: itemId,
+        reason: reportData.reason,
+        description: reportData.description || '',
+        reportedAt: Timestamp.now(),
+        reportedBy: reportData.reportedBy || 'anonymous',
+        status: 'pending', // pending, reviewed, resolved
+        reviewedAt: null,
+        reviewedBy: null,
+        resolution: null
+      };
+      
+      const docRef = await addDoc(collection(db, 'reports'), reportDoc);
+      
+      // Also flag the item itself
+      await this.flagItem(itemId, true);
+      
+      console.log('✅ Report submitted with ID:', docRef.id);
+      return docRef.id;
+    } catch (error) {
+      console.error('❌ Error reporting item:', error);
+      throw error;
+    }
+  },
+
+  // Flag an item
+  async flagItem(itemId, isFlagged = true) {
+    try {
+      const itemRef = doc(db, ITEMS_COLLECTION, itemId);
+      await updateDoc(itemRef, {
+        isFlagged: isFlagged,
+        flaggedAt: isFlagged ? Timestamp.now() : null,
+        updatedAt: Timestamp.now()
+      });
+      return true;
+    } catch (error) {
+      console.error('❌ Error flagging item:', error);
+      throw error;
+    }
+  },
+
+  // Get all reports (admin only)
+  async getAllReports() {
+    try {
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, 'reports'),
+          orderBy('reportedAt', 'desc')
+        )
+      );
+      
+      const reports = [];
+      querySnapshot.forEach((doc) => {
+        reports.push({
+          id: doc.id,
+          ...doc.data(),
+          reportedAt: doc.data().reportedAt?.toDate?.() || new Date(doc.data().reportedAt)
+        });
+      });
+      
+      return reports;
+    } catch (error) {
+      console.error('❌ Error fetching reports:', error);
+      throw error;
+    }
+  },
+
+  // Get flagged items (admin only)
+  async getFlaggedItems() {
+    try {
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, ITEMS_COLLECTION),
+          where('isFlagged', '==', true),
+          orderBy('flaggedAt', 'desc')
+        )
+      );
+      
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        items.push({
+          ...data,
+          id: doc.id,
+          posted: data.posted?.toDate?.() || new Date(data.posted),
+          flaggedAt: data.flaggedAt?.toDate?.() || new Date(data.flaggedAt)
+        });
+      });
+      
+      return items;
+    } catch (error) {
+      console.error('❌ Error fetching flagged items:', error);
+      throw error;
+    }
+  },
+
+  // Review a report (admin only)
+  async reviewReport(reportId, resolution, reviewedBy = 'admin') {
+    try {
+      const reportRef = doc(db, 'reports', reportId);
+      await updateDoc(reportRef, {
+        status: 'reviewed',
+        resolution: resolution,
+        reviewedAt: Timestamp.now(),
+        reviewedBy: reviewedBy
+      });
+      return true;
+    } catch (error) {
+      console.error('❌ Error reviewing report:', error);
+      throw error;
+    }
+  },
+
+  // Delete item and resolve reports (admin only)
+  async deleteReportedItem(itemId, reportId, deletedBy = 'admin') {
+    try {
+      // Delete the item
+      await itemsService.deleteItem(itemId);
+      
+      // Mark report as resolved
+      if (reportId) {
+        await this.reviewReport(reportId, `Item deleted by ${deletedBy}`);
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('❌ Error deleting reported item:', error);
+      throw error;
+    }
+  },
+
+  // Check if content contains prohibited words (basic filtering)
+  containsProhibitedContent(text) {
+    const prohibitedWords = [
+      'scam', 'fraud', 'illegal', 'drugs', 'weapon', 'gun', 'explosive',
+      'stolen', 'counterfeit', 'fake', 'phishing', 'spam'
+    ];
+    
+    const lowerText = text.toLowerCase();
+    return prohibitedWords.some(word => lowerText.includes(word));
+  },
+
+  // Auto-moderate content when posting
+  async autoModerateItem(itemData) {
+    const flags = [];
+    
+    // Check title and description for prohibited content
+    if (this.containsProhibitedContent(itemData.title)) {
+      flags.push('Prohibited content in title');
+    }
+    
+    if (itemData.description && this.containsProhibitedContent(itemData.description)) {
+      flags.push('Prohibited content in description');
+    }
+    
+    // Check for suspicious patterns
+    if (itemData.title.length < 3) {
+      flags.push('Title too short');
+    }
+    
+    if (itemData.contact && itemData.contact.includes('$')) {
+      flags.push('Suspicious contact info');
+    }
+    
+    return flags;
+  }
+};
+
 // Image Service using Cloudinary
 export const imageService = {
   // Upload multiple images

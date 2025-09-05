@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import ContactButtons from './ContactButtons';
 import MessageModal from './MessageModal';
-import { imageService } from '../services/firebaseService'; // ADD THIS IMPORT
+import ReportModal from './ReportModal'; // ADD THIS IMPORT
+import { imageService } from '../services/firebaseService';
 
 const ItemModal = ({ item, onClose, onStatusUpdate, showNotification }) => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false); // ADD THIS STATE
 
   if (!item) return null;
 
-  // ADD THIS FUNCTION - Get optimized image for modal display
+  // Get optimized image for modal display
   const getModalImage = (photoUrl) => {
     if (!photoUrl) return null;
     
@@ -85,14 +87,27 @@ const ItemModal = ({ item, onClose, onStatusUpdate, showNotification }) => {
             <i className="fas fa-times"></i>
           </button>
 
+          {/* ADD REPORT BUTTON TO HEADER */}
           <div className="modal-header">
-            <div className={`status-badge ${statusBadge.class}`}>
-              <i className={statusBadge.icon}></i>
-              {statusBadge.text}
+            <div className="modal-header-left">
+              <div className={`status-badge ${statusBadge.class}`}>
+                <i className={statusBadge.icon}></i>
+                {statusBadge.text}
+              </div>
+              <div className="item-category">
+                <i className={getCategoryIcon(item.category)}></i>
+                {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+              </div>
             </div>
-            <div className="item-category">
-              <i className={getCategoryIcon(item.category)}></i>
-              {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+            <div className="modal-header-right">
+              <button 
+                className="btn btn-outline btn-small report-btn"
+                onClick={() => setShowReportModal(true)}
+                title="Report inappropriate content"
+              >
+                <i className="fas fa-flag"></i>
+                Report
+              </button>
             </div>
           </div>
 
@@ -222,6 +237,15 @@ const ItemModal = ({ item, onClose, onStatusUpdate, showNotification }) => {
         <MessageModal
           item={item}
           onClose={() => setShowMessageModal(false)}
+          showNotification={showNotification}
+        />
+      )}
+
+      {/* Report Modal */}
+      {showReportModal && (
+        <ReportModal
+          item={item}
+          onClose={() => setShowReportModal(false)}
           showNotification={showNotification}
         />
       )}

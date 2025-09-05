@@ -7,6 +7,7 @@ import Browse from './pages/Browse';
 import PostItem from './pages/PostItem';
 import MyItems from './pages/MyItems';
 import Map from './pages/Map';
+import Guidelines from './pages/Guidelines';
 
 // Firebase Services
 import { itemsService } from './services/firebaseService';
@@ -161,6 +162,14 @@ function App() {
         return null;
     }
   };
+
+case 'guidelines':
+      return (
+        <Guidelines />
+      );
+    
+    default:
+      return null;
 
   return (
     <div className="app">
