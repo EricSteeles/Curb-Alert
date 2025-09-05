@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PhotoUpload from '../components/PhotoUpload';
 import AddressAutocomplete from '../components/AddressAutocomplete';
 import { getCurrentLocation, reverseGeocode } from '../utils/geolocation';
+import { imageService } from '../services/firebaseService';
 
 const PostItem = ({ onItemPost, showNotification }) => {
   const [formData, setFormData] = useState({
@@ -111,7 +112,7 @@ const PostItem = ({ onItemPost, showNotification }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!formData.title || !formData.category || !formData.location) {
@@ -124,36 +125,54 @@ const PostItem = ({ onItemPost, showNotification }) => {
       return;
     }
 
-    const newItem = {
-      ...formData,
-      // Use custom category if "other" was selected
-      finalCategory: formData.category === 'other' ? formData.customCategory.trim().toLowerCase() : formData.category,
-      photos: photos.map(photo => photo.url),
-      coordinates: detectedLocation || {
-        lat: 34.0522 + (Math.random() - 0.5) * 0.1,
-        lng: -118.2437 + (Math.random() - 0.5) * 0.1
-      },
-      posted: new Date().toISOString(),
-      status: 'available',
-      id: Date.now() // Simple ID generation
-    };
+    try {
+      // Show loading notification
+      showNotification('Uploading item...', 'info');
+      
+      // Upload photos to Cloudinary first (if any)
+      let photoUrls = [];
+      if (photos.length > 0) {
+        showNotification('Uploading photos...', 'info');
+        const photoFiles = photos.map(photo => photo.file);
+        photoUrls = await imageService.uploadImages(photoFiles);
+        showNotification('Photos uploaded successfully!', 'success');
+      }
 
-    onItemPost(newItem);
-    
-    // Reset form
-    setFormData({
-      title: '',
-      category: '',
-      customCategory: '',
-      description: '',
-      location: '',
-      condition: 'good',
-      contact: '',
-      tags: []
-    });
-    setPhotos([]);
-    setDetectedLocation(null);
-    setCurrentTag('');
+      const newItem = {
+        ...formData,
+        // Use custom category if "other" was selected
+        finalCategory: formData.category === 'other' ? formData.customCategory.trim().toLowerCase() : formData.category,
+        photos: photoUrls, // Store Cloudinary URLs instead of base64
+        coordinates: detectedLocation || {
+          lat: 34.0522 + (Math.random() - 0.5) * 0.1,
+          lng: -118.2437 + (Math.random() - 0.5) * 0.1
+        },
+        posted: new Date().toISOString(),
+        status: 'available',
+        id: Date.now() // Simple ID generation
+      };
+
+      await onItemPost(newItem);
+      
+      // Reset form
+      setFormData({
+        title: '',
+        category: '',
+        customCategory: '',
+        description: '',
+        location: '',
+        condition: 'good',
+        contact: '',
+        tags: []
+      });
+      setPhotos([]);
+      setDetectedLocation(null);
+      setCurrentTag('');
+      
+    } catch (error) {
+      console.error('Error posting item:', error);
+      showNotification('Error uploading item. Please try again.', 'error');
+    }
   };
 
   const filteredSuggestions = tagSuggestions.filter(suggestion => 
