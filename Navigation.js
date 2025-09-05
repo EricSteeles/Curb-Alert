@@ -34,6 +34,14 @@ const Navigation = ({ currentTab, onTabChange }) => {
         <i className="fas fa-map-marker-alt"></i>
         <span>Map</span>
       </button>
+
+      <button
+        className={`nav-button ${currentTab === 'guidelines' ? 'active' : ''}`}
+        onClick={() => onTabChange('guidelines')}
+      >
+        <i className="fas fa-book-open"></i>
+        <span>Guidelines</span>
+      </button>
     </nav>
   );
 };
