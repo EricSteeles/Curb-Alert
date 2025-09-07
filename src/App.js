@@ -193,8 +193,8 @@ function App() {
             loading={loading}
           />
         );
-      case 'guidelines':
-        return <Guidelines />;
+     case 'guidelines':
+  return <Guidelines showNotification={showNotification} />;
       case 'admin':
         return isAdmin ? (
           <AdminPanel 

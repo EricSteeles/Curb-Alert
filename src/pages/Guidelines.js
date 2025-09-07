@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ContactForm from '../components/ContactForm';
 
-function Guidelines() {
+function Guidelines({ showNotification }) {
+  const [showContactForm, setShowContactForm] = useState(false);
+
   return (
     <div className="tab-content">
       <div className="guidelines-container">
@@ -76,12 +79,24 @@ function Guidelines() {
           <div className="contact-info">
             <h4>📧 Contact Information</h4>
             <p>For questions, concerns, or reporting issues that require immediate attention:</p>
-            <ul>
-              <li><strong>Email:</strong> <a href="mailto:0ericsteele0@gmail.com">0ericsteele0@gmail.com</a></li>
-              <li><strong>Moderation Team:</strong> <a href="mailto:0ericsteele0@gmail.com">0ericsteele0@gmail.com</a></li>
-              <li><strong>Response time:</strong> Usually within 24-48 hours</li>
-              <li><strong>Urgent safety issues:</strong> Please contact local authorities first</li>
-            </ul>
+            
+            <div className="contact-methods">
+              <button 
+                className="contact-button primary"
+                onClick={() => setShowContactForm(true)}
+              >
+                <i className="fas fa-envelope"></i>
+                Contact Moderators
+              </button>
+              
+              <div className="contact-details">
+                <ul>
+                  <li><strong>Response time:</strong> Usually within 24-48 hours</li>
+                  <li><strong>Urgent safety issues:</strong> Please contact local authorities first</li>
+                  <li><strong>Privacy:</strong> Your contact information is kept confidential</li>
+                </ul>
+              </div>
+            </div>
             
             <div className="report-process">
               <h5>How Reports Are Handled:</h5>
@@ -129,6 +144,13 @@ function Guidelines() {
           <p><small>Guidelines last updated: {new Date().toLocaleDateString()}</small></p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm 
+        isOpen={showContactForm}
+        onClose={() => setShowContactForm(false)}
+        showNotification={showNotification}
+      />
     </div>
   );
 }
