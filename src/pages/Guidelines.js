@@ -1,141 +1,136 @@
 import React from 'react';
 
-const Guidelines = () => {
+function Guidelines() {
   return (
     <div className="tab-content">
-      <h2 style={{ marginBottom: '30px', textAlign: 'center' }}>
-        <i className="fas fa-hands-helping"></i> Community Guidelines
-      </h2>
-      
-      <div className="guidelines-content">
-        <div className="guidelines-intro">
-          <p>Welcome to our free stuff community! These guidelines help keep our platform safe, 
-          friendly, and useful for everyone. By posting or using our platform, you agree to follow these rules.</p>
-        </div>
-
+      <div className="guidelines-container">
+        <h2>Community Guidelines</h2>
+        
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-check-circle"></i>
-            What You Can Post
-          </h3>
+          <h3>🏠 What to Post</h3>
           <ul>
-            <li><strong>Free items only</strong> - No selling, trading, or requesting payment</li>
-            <li><strong>Items you own</strong> - Only post things that belong to you</li>
-            <li><strong>Clean, safe items</strong> - Items should be in reasonable condition</li>
-            <li><strong>Legal items</strong> - Nothing stolen, counterfeit, or illegal</li>
-            <li><strong>Household goods</strong> - Furniture, electronics, books, toys, etc.</li>
-            <li><strong>Garden items</strong> - Plants, pots, tools, outdoor furniture</li>
-            <li><strong>Clothing & accessories</strong> - Clean and in good condition</li>
+            <li>Items that are free and available for pickup</li>
+            <li>Items in good, usable condition</li>
+            <li>Items you're placing on the curb or giving away</li>
+            <li>Clear photos showing the item's condition</li>
+            <li>Accurate descriptions and locations</li>
           </ul>
         </div>
 
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-times-circle"></i>
-            What's Not Allowed
-          </h3>
+          <h3>❌ What NOT to Post</h3>
           <ul>
-            <li><strong>Anything for sale</strong> - This is a free-only platform</li>
-            <li><strong>Food items</strong> - For safety reasons, no perishables</li>
-            <li><strong>Dangerous items</strong> - Weapons, chemicals, broken glass, etc.</li>
-            <li><strong>Live animals</strong> - Use proper pet rehoming services</li>
-            <li><strong>Personal information</strong> - No sharing others' private details</li>
-            <li><strong>Spam or duplicates</strong> - Don't post the same item multiple times</li>
-            <li><strong>Inappropriate content</strong> - Keep it family-friendly</li>
-            <li><strong>Fake listings</strong> - All posts must be genuine offers</li>
+            <li>Items for sale (this is for free items only)</li>
+            <li>Broken or damaged items unless clearly stated</li>
+            <li>Hazardous materials or chemicals</li>
+            <li>Items that violate local regulations</li>
+            <li>Food items or perishables</li>
+            <li>Live animals</li>
+            <li>Inappropriate or offensive content</li>
+            <li>Fake or misleading listings</li>
           </ul>
         </div>
 
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-handshake"></i>
-            Being a Good Community Member
-          </h3>
+          <h3>📍 Location & Pickup</h3>
           <ul>
-            <li><strong>Be honest</strong> - Describe items accurately, including any defects</li>
-            <li><strong>Be responsive</strong> - Reply to messages promptly</li>
-            <li><strong>Be respectful</strong> - Treat others with kindness and patience</li>
-            <li><strong>First come, first served</strong> - Honor pickup commitments</li>
-            <li><strong>Update your posts</strong> - Mark items as claimed when taken</li>
-            <li><strong>No-shows happen</strong> - Be understanding if someone can't make it</li>
-            <li><strong>Stay safe</strong> - Meet in public places when possible</li>
+            <li>Provide accurate location information</li>
+            <li>Only post items available for immediate pickup</li>
+            <li>Update status when items are taken</li>
+            <li>Be respectful of private property</li>
+            <li>Meet in safe, well-lit areas when possible</li>
           </ul>
         </div>
 
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-shield-alt"></i>
-            Safety Tips
-          </h3>
+          <h3>🤝 Community Etiquette</h3>
           <ul>
-            <li><strong>Meet safely</strong> - Use well-lit, public locations for pickup</li>
-            <li><strong>Bring a friend</strong> - Consider having someone with you</li>
-            <li><strong>Trust your instincts</strong> - If something feels off, walk away</li>
-            <li><strong>Verify items</strong> - Check that items match the description</li>
-            <li><strong>Protect privacy</strong> - Don't share personal information unnecessarily</li>
-            <li><strong>Report issues</strong> - Use the report button for inappropriate content</li>
+            <li>First come, first served basis</li>
+            <li>Be respectful in all interactions</li>
+            <li>Don't hold items for extended periods</li>
+            <li>Clean up after yourself when picking up items</li>
+            <li>Be understanding if pickup plans change</li>
           </ul>
         </div>
 
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-exclamation-triangle"></i>
-            Reporting & Moderation
-          </h3>
+          <h3>📱 Using the App</h3>
           <ul>
-            <li><strong>Report inappropriate content</strong> - Help keep the community safe</li>
-            <li><strong>Be specific</strong> - Provide details when reporting issues</li>
-            <li><strong>No false reports</strong> - Only report genuine violations</li>
-            <li><strong>We review all reports</strong> - Usually within 24-48 hours</li>
-            <li><strong>Consequences</strong> - Violations may result in post removal or restrictions</li>
+            <li>Mark items as "taken" when picked up</li>
+            <li>Delete posts for items no longer available</li>
+            <li>Use clear, descriptive titles</li>
+            <li>Include relevant details in descriptions</li>
+            <li>Report inappropriate content using the report button</li>
+          </ul>
+        </div>
+
+        <div className="guidelines-section important">
+          <h3>🚨 Reporting Issues</h3>
+          <p>Help keep our community safe by reporting problematic content:</p>
+          <ul>
+            <li><strong>Use the Report button</strong> on any inappropriate item listing</li>
+            <li><strong>Report spam, fraud, or dangerous items</strong> immediately</li>
+            <li><strong>Contact moderators</strong> for serious issues or questions</li>
+          </ul>
+          
+          <div className="contact-info">
+            <h4>📧 Contact Information</h4>
+            <p>For questions, concerns, or reporting issues that require immediate attention:</p>
+            <ul>
+              <li><strong>Email:</strong> <a href="mailto:0ericsteele0@gmail.com">0ericsteele0@gmail.com</a></li>
+              <li><strong>Moderation Team:</strong> <a href="mailto:0ericsteele0@gmail.com">0ericsteele0@gmail.com</a></li>
+              <li><strong>Response time:</strong> Usually within 24-48 hours</li>
+              <li><strong>Urgent safety issues:</strong> Please contact local authorities first</li>
+            </ul>
+            
+            <div className="report-process">
+              <h5>How Reports Are Handled:</h5>
+              <ol>
+                <li>Reports are reviewed by our moderation team</li>
+                <li>Inappropriate content is removed promptly</li>
+                <li>Repeat violations may result in posting restrictions</li>
+                <li>We investigate all reports thoroughly and fairly</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div className="guidelines-section">
+          <h3>🛡️ Safety First</h3>
+          <ul>
+            <li>Trust your instincts - if something feels wrong, walk away</li>
+            <li>Meet in public places when possible</li>
+            <li>Bring a friend for larger item pickups</li>
+            <li>Don't share personal information unnecessarily</li>
+            <li>Report suspicious activity immediately</li>
           </ul>
         </div>
 
         <div className="guidelines-section">
-          <h3>
-            <i className="fas fa-lightbulb"></i>
-            Tips for Great Posts
-          </h3>
-          <ul>
-            <li><strong>Clear photos</strong> - Take good pictures showing the item's condition</li>
-            <li><strong>Descriptive titles</strong> - "Oak coffee table with drawer" vs "Table"</li>
-            <li><strong>Honest descriptions</strong> - Mention size, condition, and any issues</li>
-            <li><strong>Accurate location</strong> - Help people find you easily</li>
-            <li><strong>Pickup details</strong> - Mention stairs, heavy items, etc.</li>
-            <li><strong>Use tags</strong> - Add keywords to help people find your items</li>
-          </ul>
+          <h3>⚖️ Community Standards</h3>
+          <p>We reserve the right to remove content that violates these guidelines. Repeated violations may result in restricted access to the platform.</p>
+          <p>Our automated systems also scan for prohibited content and may flag items for review.</p>
+          <p>By using this app, you agree to follow these community guidelines and help maintain a positive environment for everyone.</p>
         </div>
 
         <div className="guidelines-footer">
           <div className="footer-section">
-            <h4>
-              <i className="fas fa-question-circle"></i>
-              Questions or Issues?
-            </h4>
-            <p>If you have questions about these guidelines or need to report a serious issue, 
-            please use the report feature or contact the community moderators.</p>
+            <h4>🌱 Environmental Impact</h4>
+            <p>By participating in our free item sharing community, you're helping reduce waste and promoting sustainable living in your neighborhood.</p>
           </div>
-
+          
           <div className="footer-section">
-            <h4>
-              <i className="fas fa-heart"></i>
-              Thank You!
-            </h4>
-            <p>Thanks for being part of our community and helping reduce waste by giving items 
-            a second life. Together, we're making our neighborhood more sustainable and connected!</p>
+            <h4>💝 Thank You</h4>
+            <p>Thank you for being part of our community! Together, we're building stronger neighborhood connections while reducing waste and helping items find new homes.</p>
           </div>
         </div>
 
-        <div className="guidelines-agreement">
-          <div className="agreement-box">
-            <i className="fas fa-info-circle"></i>
-            <p><strong>By using this platform, you agree to follow these community guidelines.</strong> 
-            We reserve the right to remove content or restrict access for violations.</p>
-          </div>
+        <div className="last-updated">
+          <p><small>Guidelines last updated: {new Date().toLocaleDateString()}</small></p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Guidelines;

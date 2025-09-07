@@ -72,7 +72,7 @@ const performEnhancedSearch = (items, filters) => {
   return filteredItems;
 };
 
-const Browse = ({ items = [], showNotification }) => {
+const Browse = ({ items = [], showNotification, onReportItem }) => {
   const [filters, setFilters] = useState({
     keyword: '',
     location: '',
@@ -167,6 +167,7 @@ const Browse = ({ items = [], showNotification }) => {
                 item={item}
                 onItemClick={handleItemClick}
                 showNotification={showNotification}
+                onReportItem={onReportItem}
               />
             ))
           ) : (
@@ -208,6 +209,7 @@ const Browse = ({ items = [], showNotification }) => {
                   item={item}
                   onItemClick={handleItemClick}
                   showNotification={showNotification}
+                  onReportItem={onReportItem}
                   isClaimedView={true}
                 />
               ))}
@@ -222,6 +224,7 @@ const Browse = ({ items = [], showNotification }) => {
           item={selectedItem}
           onClose={handleCloseModal}
           showNotification={showNotification}
+          onReportItem={onReportItem}
         />
       )}
     </div>

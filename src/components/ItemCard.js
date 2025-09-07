@@ -1,8 +1,9 @@
+import ReportButton from './ReportButton';
 import React from 'react';
 import ContactButtons from './ContactButtons';
 import { imageService } from '../services/firebaseService';
 
-const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }) => {
+const ItemCard = ({ item, onItemClick, showNotification, onReportItem, isClaimedView = false }) => {
   if (!item) return null;
 
   // Format the posted date
@@ -50,19 +51,19 @@ const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }
   };
 
   // Handle item click
- const handleClick = (e) => {
-  onItemClick(item);
-};
+  const handleClick = (e) => {
+    onItemClick(item);
+  };
 
   const primaryImage = getPrimaryImage();
   const displayCategory = getDisplayCategory();
 
   return (
-   <div 
-  className={`item-card ${isClaimedView ? 'claimed-item' : ''}`}
-  onClick={handleClick}
-  style={{ cursor: 'pointer', pointerEvents: 'auto', zIndex: 10 }}
->
+    <div 
+      className={`item-card ${isClaimedView ? 'claimed-item' : ''}`}
+      onClick={handleClick}
+      style={{ cursor: 'pointer', pointerEvents: 'auto', zIndex: 10 }}
+    >
       {/* Status Badge */}
       <div className={`status-badge status-${item.status}`}>
         <i className={`fas ${
@@ -72,6 +73,18 @@ const ItemCard = ({ item, onItemClick, showNotification, isClaimedView = false }
         }`}></i>
         {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
       </div>
+
+      {/* Report Button - Top Right Corner */}
+      {onReportItem && (
+        <div className="item-report-corner" onClick={(e) => e.stopPropagation()}>
+          <ReportButton 
+            itemId={item.id}
+            itemTitle={item.title}
+            onReport={onReportItem}
+            className="corner-report"
+          />
+        </div>
+      )}
 
       {/* Image Container */}
       <div className="item-image-container">

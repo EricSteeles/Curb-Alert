@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navigation = ({ currentTab, onTabChange }) => {
+const Navigation = ({ currentTab, onTabChange, isAdmin = false }) => {
   return (
     <nav className="navigation">
       <button
@@ -41,6 +41,16 @@ const Navigation = ({ currentTab, onTabChange }) => {
       >
         <i className="fas fa-book-open"></i>
         <span>Guidelines</span>
+      </button>
+
+      <button
+        className={`nav-button admin-button ${currentTab === 'admin' ? 'active' : ''} ${isAdmin ? 'admin-active' : ''}`}
+        onClick={() => onTabChange('admin')}
+        title={isAdmin ? 'Admin Panel (Logged In)' : 'Admin Panel'}
+      >
+        <i className="fas fa-shield-alt"></i>
+        <span>Admin</span>
+        {isAdmin && <div className="admin-indicator-dot"></div>}
       </button>
     </nav>
   );
