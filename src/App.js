@@ -18,8 +18,8 @@ function App() {
   const [notification, setNotification] = useState(null);
   
   // Report system state
-const [reportModalOpen, setReportModalOpen] = useState(false);
-const [reportingItem, setReportingItem] = useState(null); // This will store the full item object, not just id/title
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const [reportingItem, setReportingItem] = useState(null); // This will store the full item object, not just id/title
   
   // Admin system state
   const [isAdmin, setIsAdmin] = useState(() => {
@@ -115,18 +115,12 @@ const [reportingItem, setReportingItem] = useState(null); // This will store the
 
   // Report system functions
   const handleReportItem = (itemId, itemTitle) => {
-    setReportingItem({ id: itemId, title: itemTitle });
-    setReportModalOpen(true);
+    const item = items.find(i => i.id === itemId);
+    if (item) {
+      setReportingItem(item);
+      setReportModalOpen(true);
+    }
   };
-
-  // Report system functions
-const handleReportItem = (itemId, itemTitle) => {
-  const item = items.find(i => i.id === itemId);
-  if (item) {
-    setReportingItem(item);
-    setReportModalOpen(true);
-  }
-};
 
   // Admin functions
   const handleAdminAccess = (granted) => {
@@ -265,15 +259,18 @@ const handleReportItem = (itemId, itemTitle) => {
       )}
       
       {/* Report Modal */}
-{reportModalOpen && reportingItem && (
-  <ReportModal 
-    item={reportingItem}
-    onClose={() => {
-      setReportModalOpen(false);
-      setReportingItem(null);
-    }}
-    showNotification={showNotification}
-  />
-)}
+      {reportModalOpen && reportingItem && (
+        <ReportModal 
+          item={reportingItem}
+          onClose={() => {
+            setReportModalOpen(false);
+            setReportingItem(null);
+          }}
+          showNotification={showNotification}
+        />
+      )}
+    </div>
+  );
+}
 
 export default App;
